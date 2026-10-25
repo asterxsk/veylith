@@ -1,6 +1,6 @@
 ---
 name: poise
-description: "Composure and control. Make the output look confident without trying too hard to look sophisticated - remove generic AI-looking visual habits and polish how websites, interfaces, PDFs, posters, decks, and videos feel. Use for design cleanup, excessive dividers or uppercase monospace, uneven spacing, cluttered graphics, and overworked motion. Works alone or alongside ouu-shiit. Not for filesystem cleanup or AI-authorship detection."
+description: "Composure and control. Make the output look confident without trying too hard to look sophisticated - remove generic AI-looking visual habits and polish how websites, interfaces, PDFs, posters, decks, and videos feel. Use for design cleanup, excessive dividers or uppercase monospace, uneven spacing, cluttered graphics, and overworked motion. Works alone or alongside Lucent. Not for filesystem cleanup or AI-authorship detection."
 ---
 
 # Poise
@@ -17,20 +17,20 @@ Use the editable source and the appropriate medium's tools. A screenshot can rev
 
 For medium-specific inspection and verification, read the relevant section of [references/mediums.md](references/mediums.md). For the concrete poster comparison behind this skill, read [references/poster-calibration.md](references/poster-calibration.md) when choosing a main graphic or pruning technical density. These references are self-contained; the original poster files are not required.
 
-## Pairing with ouu-shiit
+## Pairing with Lucent
 
 Use this division of responsibility when both skills are active:
 
 - The brief, brand, and chosen design direction establish the character.
 - `poise` settles hierarchy, spacing, typography, visual explanation, and the amount of competing detail.
-- `ouu-shiit` implements effects and motion that have a clear job, using its medium-specific contracts.
+- `lucent` implements the layout, design system, effects, and motion that have a clear job, using its medium-specific contracts.
 - `poise` checks the composed result, including what the effects do to legibility, pace, and attention.
 
 Apply the fundamentals before adding effects, then make a finishing pass after integration. Preserve an expressive effect that helps the intended feeling or explains the subject. Simplify effects that compete with the message; do not flatten every lively design into a quiet template.
 
-Locate `ouu-shiit` through the available skill catalog when it is invoked; do not assume a machine-specific path. If it is unavailable, this skill still works on its own. Do not install dependencies or pull in effect libraries just to perform cleanup.
+Locate `lucent` through the available skill catalog when it is invoked; do not assume a machine-specific path. If it is unavailable, this skill still works on its own. Do not install dependencies or pull in effect libraries just to perform cleanup.
 
-When paired, use `ouu-shiit`'s editorial-label convention as a default: sentence case, untracked, serif italic. Reconcile it with the established visual direction and the medium's readability needs; these take precedence over a blanket label treatment. Do not retrofit serif italics into suitable interface controls, moving labels, or video captions merely for consistency. Keep acronyms and identifiers correctly cased. Its optional short rule is permission, not a requirement to add another divider. When working alone, use quiet labels that fit the established type system. Explicit user and brand requirements take precedence throughout.
+When paired, use Lucent's editorial-label convention as a default: sentence case, untracked, serif italic. Reconcile it with the established visual direction and the medium's readability needs; these take precedence over a blanket label treatment. Do not retrofit serif italics into suitable interface controls, moving labels, or video captions merely for consistency. Keep acronyms and identifiers correctly cased. Its optional short rule is permission, not a requirement to add another divider. When working alone, use quiet labels that fit the established type system. Explicit user and brand requirements take precedence throughout.
 
 ## Make the changes that matter
 

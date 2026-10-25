@@ -2,241 +2,172 @@
 
 # Veylith
 
-**Principles for better work. A collection of skills built around precision, resourcefulness, sound judgment, and extracting the most from every tool.**
+**Skills built on one premise: get the most out of what is already there.** Each skill takes a
+single discipline seriously, writes down the rules that discipline actually has, and refuses to
+stretch them over work they were never meant for.
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-7C5CFF)](LICENSE)
-[![Install: npx skills](https://img.shields.io/badge/install-npx%20skills-25D8EE)](https://skills.sh)
-[![Skills: 6](https://img.shields.io/badge/skills-6-FF8A5C)](install.sh)
-[![Pairs with: impeccable](https://img.shields.io/badge/pairs%20with-impeccable-A78BFA)](https://github.com/pbakaus/impeccable)
-[![Video: HyperFrames](https://img.shields.io/badge/video-HyperFrames-4B8BBE)](https://hyperframes.video)
+[![License: MIT](https://img.shields.io/badge/license-MIT-18181B)](LICENSE)
+[![Install: npx skills](https://img.shields.io/badge/install-npx%20skills-18181B)](https://skills.sh)
+[![Skills: 2](https://img.shields.io/badge/skills-2-18181B)](skills)
+[![Video: by request](https://img.shields.io/badge/video-on%20request-18181B)](skills/lucent/reference/handoffs.md)
 
-A skill is only worth installing if it changes what gets made. Each one here takes a single discipline seriously — the effects layer, the cleanup pass — writes down the rules that discipline actually has, and refuses to stretch them to cover work they were never meant for.
+The ideas that hold across the collection:
 
-The skills are deliberately narrow and deliberately honest about their edge. Where a job belongs to another skill, they hand off rather than improvise. That is the whole premise: precision over coverage, and a tool that knows what it is not.
+- **Prefer the platform.** A CSS transition over an animation library. Native scroll over smooth
+  scroll. What the project already ships over what it could install.
+- **One of each thing.** One design system, one animation engine, one scroll owner, one authored
+  moment per surface. Two of anything produces work that looks like two products.
+- **A dependency is a liability.** Every library in a brief is bundle weight, maintenance, and a
+  future upgrade. It has to earn its place in one sentence.
+- **Hand off instead of bundling.** Where a job belongs to another skill, these skills name it,
+  ask before installing it, and install exactly that one skill.
+- **Say the cost.** Bundle size, render time, or upkeep — in one line, in the report.
+
+No installer, no bundle, no companion skill that arrives uninvited.
 
 ## The collection
 
 | Skill | Discipline | What it does |
 |---|---|---|
-| **[ouu-shiit](skills/ouu-shiit/SKILL.md)** | Effects and motion | Real-time GPU effects, scroll-driven motion, and deterministic video — chosen by job, built against a per-medium contract. |
-| **[poise](skills/poise/SKILL.md)** | Composure and control | Makes output look confident without trying too hard to look sophisticated — removes generic AI-looking habits and settles hierarchy, spacing, type, and motion across web, print, decks, and video. Works alone or paired. |
+| **[lucent](skills/lucent/SKILL.md)** | Clarity and precision | Turns a vague requirement into a polished, legible interface — direction, design system, fundamentals, any effect that earns its place, and the audit. |
+| **[poise](skills/poise/SKILL.md)** | Composure and control | Makes output look confident without trying to look sophisticated — removes generic AI-looking habits and settles hierarchy, spacing, type, and motion across web, print, decks, and video. |
 
-More skills are landing in this repository. Each is a folder with a `SKILL.md`, installable on its own.
+More skills are landing. Each is a folder with a `SKILL.md`, installable on its own.
 
 ---
 
 ## Install
 
-Built on the [skills](https://skills.sh) CLI from [vercel-labs/skills](https://github.com/vercel-labs/skills). Node 18+ required.
+Built on the [skills](https://skills.sh) CLI from
+[vercel-labs/skills](https://github.com/vercel-labs/skills). **Node 22.20+ required.**
 
 ```bash
-npx skills add asterxsk/veylith --skill ouu-shiit -g -y
+npx skills add asterxsk/veylith --skill lucent -g -y
+npx skills add asterxsk/veylith --skill poise  -g -y
 ```
 
-That installs one skill. The installer below brings the whole set — every skill in this repository plus the three design skills they are built to work with.
-
-### The whole bundle
-
-One command, picked by your shell. Every route installs the same set, for every
-agent detected on the machine.
-
-**macOS / Linux / Git Bash**
+Or install everything in the collection:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/asterxsk/veylith/main/install.sh | sh
+npx skills add asterxsk/veylith -g -y
 ```
 
-**Windows, PowerShell** — no `curl.exe` alias surprises, no clone:
+Drop `-g` to install into the current project instead of your user directory, and `-a
+claude-code` (or `-a cursor`, and so on) to target one agent. Restart the agent afterwards.
 
-```powershell
-irm https://raw.githubusercontent.com/asterxsk/veylith/main/install.ps1 | iex
-```
-
-**Windows, `cmd.exe`** — the `.cmd` script piped straight into `cmd`:
-
-```bat
-curl -fsSL https://raw.githubusercontent.com/asterxsk/veylith/main/install.cmd | cmd
-```
-
-`curl.exe` ships with Windows 10 1803 and later; in PowerShell, `curl` alone is an
-alias for `Invoke-WebRequest` and takes none of these flags, so write `curl.exe`.
-If a proxy or corp TLS policy blocks the fetch, clone and run it instead.
-
-**Clone and run** — any of the three, with the target agent and scope configurable:
-
-```bash
-git clone --depth 1 https://github.com/asterxsk/veylith && cd veylith
-./install.sh          # macOS, Linux, Git Bash
-./install.ps1         # PowerShell 7+ and Windows PowerShell 5.1
-install.cmd           # cmd.exe
-```
-
-### What the installer adds
-
-| Skill | Role | Source |
-|---|---|---|
-| **ouu-shiit** | The effect layer. Eight web GPU and scroll technologies, a video framework, and a medium router. | `asterxsk/veylith` |
-| **poise** | Design cleanup for web, interfaces, PDFs, posters, decks, and video. Works standalone or alongside ouu-shiit. | `asterxsk/veylith` |
-| **impeccable** | Owns visual direction, craft, and analysis. The skill this one defers to. | `pbakaus/impeccable` |
-| **design-taste-frontend** | Brief inference, three design dials, anti-slop bans, a pre-flight check. | `Leonxlnx/taste-skill` |
-| **web-design-guidelines** | The audit pass. Fetches the current Web Interface Guidelines and reviews against them. | `vercel-labs/agent-skills` |
-| **HyperFrames** | Video, motion graphics, and decks — HTML to deterministic MP4. Added as the `/hyperframes` router. | `heygen-com/hyperframes` |
-
-Installer options, by environment variable:
-
-| Variable | Default | Effect |
-|---|---|---|
-| `AGENT` | *(unset)* | Which agent to install for. Unset installs for every agent detected on the machine — Claude Code, Codex, Cursor, and the rest — through the shared `.agents/skills` store. `'*'` targets every agent the CLI knows, installed or not. |
-| `SCOPE` | `-g` | `-g` installs to the user directory. Empty installs into the current project. |
-| `SKILL` | `1` | Set to `0` to skip the companion design skills, including poise. `VIDEO` remains independent. |
-| `VIDEO` | `1` | Set to `0` to skip HyperFrames, the video and deck toolchain. Worth turning off if you only want web effects. |
-
-```bash
-AGENT=claude-code ./install.sh  # Claude Code only
-AGENT='*' ./install.sh          # every agent the CLI knows, installed or not
-SCOPE= ./install.sh             # this project only
-SKILL=0 VIDEO=0 ./install.sh    # ouu-shiit alone
-```
-
-`install.ps1` takes the same four as parameters — `-Agent`, `-Scope`, `-Skill`, `-Video` — and falls back to the environment variables of the same name. It splits `SCOPE` into two values rather than one: `-g` (the default) for the user directory, `project` for the current project — `-Scope project`. PowerShell cannot hold an empty environment variable, so an empty `SCOPE` has no equivalent there.
-
-```powershell
-./install.ps1 -Agent claude-code  # Claude Code only
-./install.ps1 -Agent '*'          # every agent the CLI knows, installed or not
-./install.ps1 -Scope project      # this project only
-./install.ps1 -Skill 0 -Video 0   # ouu-shiit alone
-```
-
-### Manual install
-
-Every piece is an independent install. Do them in any order:
-
-```bash
-npx skills add asterxsk/veylith                 --skill ouu-shiit              -g -y
-npx skills add asterxsk/veylith                 --skill poise                  -g -y
-npx skills add pbakaus/impeccable               --skill impeccable             -g -y
-npx skills add Leonxlnx/taste-skill             --skill design-taste-frontend  -g -y
-npx skills add vercel-labs/agent-skills         --skill web-design-guidelines  -g -y
-```
-
-Or clone this repository straight into your skills directory. A skill is just a folder with a `SKILL.md` in it:
+A skill is just a folder with a `SKILL.md` in it, so cloning works too:
 
 ```bash
 git clone --depth 1 https://github.com/asterxsk/veylith /tmp/veylith
-cp -r /tmp/veylith/skills/ouu-shiit ~/.claude/skills/ouu-shiit
+cp -r /tmp/veylith/skills/lucent ~/.claude/skills/lucent
 ```
-
-Restart your agent afterwards so it picks up the new skills.
 
 ---
 
-## ouu-shiit
+## Lucent
 
-**A Claude Code skill for adding real-time GPU effects, scroll-driven motion, and video to a creative surface without wrecking it — a website, a 3D scene, a video, a deck.**
+**A design skill for turning a vague brief into an interface that is easy to understand and built
+from the least it can be built from.**
 
-Most design skills tell an agent what a page should look like. This one answers the question that comes next: **given a direction already chosen, which effect, scroll layer, or rendered frame earns a place on this surface, and how is it built so it stays fast, accessible, and alive after the hero scrolls away — or renders identically on every pass?**
+Most design skills give an agent a look. Lucent gives it an order of operations and a budget.
+It reads the project before recommending anything, prefers the platform before a package, and
+treats "use what is already installed" as the default answer rather than the fallback.
 
-It is deliberately narrow. It does not pick the design — [impeccable](https://github.com/pbakaus/impeccable) does. It supplies the effect technology, one reference per technology, and the contract every one of them has to satisfy.
+### The loop
 
-It covers two mediums deeply and routes to the right reference for the rest. Web effects and video each have their own references and their own contract — and they are genuinely different contracts, so the skill keeps them apart rather than pretending one set of rules covers both.
+```
+read the brief      →  three dials, a mode, a refusal list
+choose the substrate →  one design system, detected or chosen
+settle fundamentals →  hierarchy, spacing, type, colour, states
+add an effect       →  only if it survives one sentence
+audit once          →  one batched pass, then stop
+```
 
-### Which medium
+Each step except the first, third, and last can be skipped with a stated reason. None can be
+skipped silently.
 
-One rule applies before any effect and does not change with the medium: labels — eyebrows, kickers, table headers, captions, footers, page numbers — are serif italic, sentence case, untracked, never tracked uppercase mono. That is [labels.md](skills/ouu-shiit/reference/labels.md).
+### It is self-contained
 
-Read [mediums.md](skills/ouu-shiit/reference/mediums.md) first. It is the router: what is being made decides which references are relevant and which contract applies. It also carries the stand-down rule — this skill is an effect and motion layer, and on a native-mobile UI or a deck's argument it hands off rather than improvising.
+Direction, the design system, the fundamentals, the effects, and the audit all live in the skill.
+Nothing else has to be installed for it to work.
 
-| The brief is… | Load |
+| What Lucent owns | Reference |
 |---|---|
-| A website or web UI | [usage-map.md](skills/ouu-shiit/reference/usage-map.md), then the effect's own reference |
-| A video, motion graphic, or slide deck | [hyperframes.md](skills/ouu-shiit/reference/hyperframes.md) — decks included, via its `/slideshow` workflow |
-| 3D, authored in code | [react-three-fiber.md](skills/ouu-shiit/reference/react-three-fiber.md) |
-| 3D, authored by a designer | [spline.md](skills/ouu-shiit/reference/spline.md) |
-| An Android or iOS app screen | Nothing here is the authority — hand off to `android-native-dev`, `mobile-android-design`, or `impeccable` |
+| The three dials, the mode, and the patterns it refuses | [direction.md](skills/lucent/reference/direction.md) |
+| The seven core design systems, plus the enterprise ones for named brands | [design-systems.md](skills/lucent/reference/design-systems.md) |
+| Hierarchy, spacing, type, colour, layout, states, accessibility floor | [fundamentals.md](skills/lucent/reference/fundamentals.md) |
+| Which effect belongs where, and where every one of them is wrong | [usage-map.md](skills/lucent/reference/usage-map.md) |
+| The pre-flight and interface checklist | [audit.md](skills/lucent/reference/audit.md) |
+| Small labels: serif italic, sentence case, untracked — the one cross-medium rule | [labels.md](skills/lucent/reference/labels.md) |
 
-The reason this is a table and not a paragraph: the obligations genuinely change between mediums. A page lives indefinitely and costs per-frame GPU work while a visitor watches; a video is a fixed grid of frames rendered once, and its costs are render minutes and a published artifact's asset licences. **A technology moving between mediums does not carry its contract with it** — ShaderGradient on a page must pause off-screen and honour `prefers-reduced-motion`, while the same shader in a composition must be seekable and render identically on every pass.
+### Design systems
 
-### What's inside
+Well-known, general-purpose systems only. Detected from `package.json` before anything is
+recommended, and exactly one per project.
 
-Nine technologies, each with its own reference file covering how to use it, where to use it, its performance and accessibility obligations, and the pitfalls that bite in practice. Eight are the web effect layer; the ninth leaves the browser entirely.
-
-| Technology | Delivers | Reference |
+| System | Pick it when | Stack |
 |---|---|---|
-| **react-three-fiber** | Code-controlled 3D: product viewers, scenes, scroll-driven 3D, particles, post-processing | [reference](skills/ouu-shiit/reference/react-three-fiber.md) |
-| **Spline** | Designer-authored 3D scenes the page can drive | [reference](skills/ouu-shiit/reference/spline.md) |
-| **Liquid glass** | Glass refraction over live background — floating chrome, nav bars, panels | [reference](skills/ouu-shiit/reference/liquid-glass.md) |
-| **ShaderGradient** | Animated WebGL gradient backgrounds | [reference](skills/ouu-shiit/reference/shader-gradient.md) |
-| **liquid-logo** | GLSL displacement on a logo texture — liquid-metal brand moments | [reference](skills/ouu-shiit/reference/liquid-logo.md) |
-| **Lenis** | Interpolated native smooth scroll | [reference](skills/ouu-shiit/reference/lenis.md) |
-| **Motion** | Scroll-linked reveals, parallax, layout and exit animation. Reads scroll without owning it, so it composes with Lenis | [reference](skills/ouu-shiit/reference/motion.md) |
-| **StringTune** | CSS-variable scroll and cursor choreography | [reference](skills/ouu-shiit/reference/stringtune.md) |
-| **HyperFrames** | **HTML/CSS/JS → deterministic MP4.** Video, motion graphics, and slide decks | [reference](skills/ouu-shiit/reference/hyperframes.md) |
+| **shadcn/ui** | You want to own the component source | React, Tailwind v4 |
+| **HeroUI** | Polished and accessible without owning it | React 19, Tailwind v4, React Aria |
+| **Mantine** | React without Tailwind, or a full kit | React, CSS modules |
+| **Base UI** · **Radix Primitives** | You are authoring the design system itself | React, unstyled |
+| **React Aria Components** | Accessibility is audited, not assumed | React, unstyled |
+| **daisyUI** | Not React, or no JS behaviour needed | Any, CSS only |
 
-Picking between the web eight — which effect belongs on which surface, and where every one of them is the wrong answer — is [usage-map.md](skills/ouu-shiit/reference/usage-map.md). Those names are **GitHub repos, not npm package names**, and more than one unrelated project shares several of them, so the reference files open with the real repos and which one to pick. HyperFrames is the worst offender: singular `hyperframe` on PyPI is a widely-used Python HTTP/2 library, and a steel-framing company and a closed SaaS also answer to the name.
+Plus the named-brand systems for when the brand *is* the brief: Material UI, IBM Carbon, Fluent
+UI, GitHub Primer, React Spectrum, Shopify Polaris, Ant Design. Details, versions, licences, and
+exit costs in [design-systems.md](skills/lucent/reference/design-systems.md).
 
-It also documents the three design references it is built to work with: [design-references.md](skills/ouu-shiit/reference/design-references.md).
+### The effect layer
 
-### Settle the section before the effect
+Three technologies, each written as a rule sheet rather than a tutorial.
 
-A hero, navbar, CTA, footer, or pricing page has a shape that exists independently of any effect you put in it. Five galleries collect real examples of exactly those sections — screenshots of shipped sites, no code, so they inform the container rather than the effect.
+| Need | Reference |
+|---|---|
+| Motion, scroll-linked reveals, parallax, and smooth scroll | [motion.md](skills/lucent/reference/motion.md) — Motion and Lenis |
+| Code-authored 3D, or a designer-supplied Spline scene | [three-d.md](skills/lucent/reference/three-d.md) — react-three-fiber and Spline |
+| Glass, liquid marks, animated gradient backgrounds | [surfaces.md](skills/lucent/reference/surfaces.md) |
 
-| Gallery | Collects | Ships code |
-|---|---|---|
-| [Supahero](https://supahero.io) | Hero sections — the first screen | No |
-| [PricingPages.design](https://pricingpages.design) | Pricing pages | No |
-| [Navbar Gallery](https://www.navbar.gallery) | Navigation bars | No |
-| [CTA.gallery](https://www.cta.gallery) | Individual call-to-actions | No |
-| [Footer](https://www.footer.design) | Whole website footers | No |
+Before building any of them, check [ui-registries.md](skills/lucent/reference/ui-registries.md) —
+Cult UI, Kokonut UI, Skiper UI, and Watermelon UI ship free copy-paste versions of all three.
+When the *section* is undecided rather than the effect, [design-galleries.md](skills/lucent/reference/design-galleries.md)
+collects real shipped hero, navbar, CTA, footer, and pricing sections to calibrate against.
 
-All five are free to browse and none of them publishes source, components, or a registry — that distinction matters, because these galleries are reference material while [ui-registries.md](skills/ouu-shiit/reference/ui-registries.md) is the installable half. Details, including which entries are sponsored placement and what the licensing actually allows, in [design-galleries.md](skills/ouu-shiit/reference/design-galleries.md).
+### What it hands off
 
-### Before you build it, check if it exists
+Lucent covers the interface. Everything else is a named handoff:
 
-Several of these effects ship as free, copy-paste React components in public shadcn registries, with the ordinary UI around them included. The skill checks there first when a project is already React with shadcn configured — a maintained component beats a hand-rolled scene.
+| The brief is | The skill |
+|---|---|
+| A video, motion graphic, or slide deck | `hyperframes` |
+| Music, SFX, voiceover, stock media | `media-use` |
+| A chart, graph, or dashboard metric | `dataviz` |
+| Android or iOS native screens | `android-native-dev`, `mobile-android-design` |
+| A polish pass on a finished artifact | `poise` |
 
-| Registry | What it gives you | Cost |
-|---|---|---|
-| [Cult UI](https://www.cult-ui.com) | The closest overlap with this skill: distorted glass, liquid metal, shader lens blur, animated gradient and texture backgrounds | MIT. Pro blocks are paid and excluded. |
-| [Kokonut UI](https://kokonutui.com) | Small animated details rather than whole compositions: `particle-button`, `shimmer-text`, `liquid-glass-card`, `ai-prompt`. Built on Motion, with a machine-readable registry | Free and open source. Kokonut UI Pro is paid and excluded. |
-| [Skiper UI](https://skiper-ui.com) | Unusual interaction moments: dynamic island, token swaps, View-Transition theme toggles, scroll marquees | Free tier plus a paid Pro tier. **The free tier requires attribution**, and Pro is excluded. |
-| [Watermelon UI](https://ui.watermelon.sh) | Breadth: 260+ components, blocks, dashboards and templates to surround the one effect. Hosted MCP server, no API key. | MIT, free |
+The protocol, spelled out in [handoffs.md](skills/lucent/reference/handoffs.md):
 
-The paid tiers of all four are deliberately out of scope — the reference is written so an agent never configures a licence key or trips a paywall, and it flags the Skiper attribution requirement instead of quietly absorbing it. Details in [ui-registries.md](skills/ouu-shiit/reference/ui-registries.md).
+1. Detect whether the skill is already installed.
+2. Ask once, with the exact command and what it adds.
+3. Install only on approval — **one skill, never a pack**.
+4. Say if a restart is needed.
+5. If installing is impossible, state the limit and use the narrowest fallback that needs no new
+   dependency.
 
-Two of the four build on Motion, one on the older `framer-motion` package, which is the same project under its previous name. Installing both ships the animation engine twice, so the reference tells the agent to match whatever the project already has.
-
-A registry component is not exempt from the contract. These libraries rarely honour `prefers-reduced-motion` on their own, several allocate a WebGL context, and several bind scroll listeners that will fight a smooth-scroll library — so the same six rules below apply to code you installed rather than wrote.
-
-### How it works
-
-The medium comes first: the skill identifies what is being made, and hands off if that is outside an effect layer's remit. Then direction — impeccable's mode and visual world, or the taste skill's motion budget for a greenfield marketing page. Then it names the effect's job in one sentence, loads the reference for that technology, and builds against that medium's contract.
-
-#### The web contract
-
-Every browser effect in this skill obeys these six rules. **These are web rules and they are not universal** — the video reference carries a different contract, and mixing the two is a real failure mode, not a stylistic one.
-
-- **The page works without it.** Content, copy, controls, and navigation function with the canvas absent. The effect layers over a complete page — it is never the container content lives inside.
-- **GPU cost is bounded and measured.** Device pixel ratio capped, rendering paused off-screen and on a hidden tab, canvas lazy-mounted near the viewport, quality cut below ~50fps on a mid-range phone.
-- **Motion respects `prefers-reduced-motion`.** Reduced motion means a static, composed frame — not a paused canvas showing nothing.
-- **Everything is unmounted and disposed.** A leaked renderer exhausts the browser's WebGL context limit and kills every canvas on the page.
-- **It is legible and keyboard-reachable.** Text over an effect gets a real contrast guarantee, not hope.
-- **Scroll has exactly one owner.** Native, Lenis, drei `ScrollControls`, or StringTune — one of them, never two.
-
-#### The video contract
-
-Different medium, different obligations. A video is a fixed set of frames rendered once, so what matters is determinism (same input, same frames — which holds only if animations are *seekable* rather than wall-clock), render time instead of per-frame GPU cost, codec and delivery format chosen at encode, mixed audio levels in LUFS, captions as an accessibility requirement, and cleared licences on every asset, since the output is a published artifact. Full detail in [hyperframes.md](skills/ouu-shiit/reference/hyperframes.md).
-
-The skill also reconciles against impeccable's craft floor rather than working around it: glass has to earn its place by showing something the user benefits from seeing, gradient text stays refused, and effects never mask weak fundamentals.
+Nothing in this repository installs anything else. That is the point.
 
 ---
 
 ## poise
 
-[poise](skills/poise/SKILL.md) improves hierarchy, spacing, typography, graphics, and motion across websites, interfaces, PDFs, posters, decks, and videos. Use it to prune repetitive dividers, decorative uppercase monospace, clutter, and effects that compete with the message while preserving the brief, brand, and meaningful character.
+[poise](skills/poise/SKILL.md) improves hierarchy, spacing, typography, graphics, and motion
+across websites, interfaces, PDFs, posters, decks, and videos. Use it to prune repetitive
+dividers, decorative uppercase monospace, clutter, and effects that compete with the message,
+while preserving the brief, brand, and meaningful character.
 
-It works on its own without effect libraries. When paired with ouu-shiit, use poise to settle the fundamentals, ouu-shiit to implement purposeful effects and motion, then poise to check the composed result. Expressive effects that help the message or intended feeling stay.
-
-The bundle includes poise by default. To install only poise:
+It works on its own, with no libraries and no dependencies. When paired with Lucent, Lucent
+settles the fundamentals and builds; poise makes the finishing pass and checks the composed
+result.
 
 ```bash
 npx skills add asterxsk/veylith --skill poise -g -y
@@ -247,50 +178,43 @@ npx skills add asterxsk/veylith --skill poise -g -y
 ## Repository layout
 
 ```
-skills/ouu-shiit/
-├── SKILL.md                the skill: inventory, router, order of operations, the contracts
+skills/lucent/
+├── SKILL.md                    the loop, the contracts, the handoff protocol
 └── reference/
-    ├── mediums.md          the router — which medium takes which reference
-    ├── labels.md           the label rule — serif italic, sentence case, every medium
-    ├── usage-map.md        where each web effect belongs, and where it does not
-    ├── design-references.md  impeccable, the taste skill, the DESIGN.md catalog
-    ├── design-galleries.md  hero, pricing, navbar, CTA, and footer galleries
-    ├── ui-registries.md    Cult UI, Kokonut UI, Skiper UI, Watermelon UI — the free tiers
-    ├── hyperframes.md      video, motion graphics, and decks — and the video contract
-    ├── react-three-fiber.md
-    ├── spline.md
-    ├── liquid-glass.md
-    ├── shader-gradient.md
-    ├── liquid-logo.md
-    ├── lenis.md
-    ├── motion.md
-    └── stringtune.md
+    ├── mediums.md              what is being made, and what that changes
+    ├── direction.md            three dials, mode, the refusal list
+    ├── design-systems.md       the seven core systems plus the named brands
+    ├── fundamentals.md         hierarchy, spacing, type, colour, states, a11y
+    ├── usage-map.md            where each effect belongs, and where it does not
+    ├── motion.md               Motion and Lenis, and the scroll-ownership rule
+    ├── three-d.md              react-three-fiber and Spline
+    ├── surfaces.md             liquid glass, liquid logo, animated gradients
+    ├── labels.md               the one rule that does not change with the medium
+    ├── audit.md                the batched pre-flight and interface checklist
+    ├── handoffs.md             what to install, when, and how to ask
+    ├── design-references.md     the DESIGN.md catalogue and how the layers sequence
+    ├── design-galleries.md     hero, pricing, navbar, CTA, and footer galleries
+    └── ui-registries.md        Cult UI, Kokonut UI, Skiper UI, Watermelon UI
 skills/poise/
-├── SKILL.md                standalone design cleanup and pairing with ouu-shiit
-├── agents/openai.yaml      display name and default prompt for non-Claude agents
+├── SKILL.md                    standalone cleanup and pairing with Lucent
+├── agents/openai.yaml          display name and default prompt for non-Claude agents
 └── references/
-    ├── mediums.md          inspection and verification by medium
-    └── poster-calibration.md  concrete poster cleanup comparison
-assets/                     banner and mark
-install.sh                  installer, built on the skills CLI
-install.ps1 install.cmd     the same, for PowerShell and cmd.exe
+    ├── mediums.md              inspection and verification by medium
+    └── poster-calibration.md   concrete poster cleanup comparison
+assets/                         banner and mark
 ```
-
-## Optional: the DESIGN.md catalog
-
-[awesome-design-md](https://github.com/VoltAgent/awesome-design-md) is 74 design systems analysed from real sites, one `DESIGN.md` per brand. It is reference material, not a skill, so it is not installable — clone it and copy a single file into a project root when a brief names a reference point:
-
-```bash
-git clone --depth 1 https://github.com/VoltAgent/awesome-design-md
-```
-
-Read it for structure and calibration, then derive the actual palette and type from the user's own brand. It describes other companies' identities, not an identity to ship.
 
 ## Credits
 
-Builds on the work of [`pmndrs/react-three-fiber`](https://github.com/pmndrs/react-three-fiber), [Spline](https://spline.design), [`motion`](https://motion.dev), [`heygen-com/hyperframes`](https://github.com/heygen-com/hyperframes), [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable), [`Leonxlnx/taste-skill`](https://github.com/Leonxlnx/taste-skill), [`vercel-labs/agent-skills`](https://github.com/vercel-labs/agent-skills), [`nolly-studio/cult-ui`](https://github.com/nolly-studio/cult-ui), [Kokonut UI](https://kokonutui.com), [Skiper UI](https://skiper-ui.com), [`WatermelonCorp`](https://github.com/WatermelonCorp), and the [skills](https://github.com/vercel-labs/skills) CLI. Each linked technology and component library belongs to its own authors; this repository only documents how to use them well, and documents their free tiers only.
-
-HyperFrames is Apache-2.0 and rendered locally by default, at no per-render cost. Only its `cloud render` path bills, and its 21 published skills are its own to maintain — [hyperframes.md](skills/ouu-shiit/reference/hyperframes.md) deliberately routes to them rather than restating them.
+Builds on the work of [`pmndrs/react-three-fiber`](https://github.com/pmndrs/react-three-fiber),
+[Spline](https://spline.design), [`motion`](https://motion.dev),
+[`darkroomengineering/lenis`](https://github.com/darkroomengineering/lenis),
+[`nolly-studio/cult-ui`](https://github.com/nolly-studio/cult-ui), [Kokonut UI](https://kokonutui.com),
+[Skiper UI](https://skiperui.com), [`WatermelonCorp`](https://github.com/WatermelonCorp),
+[`VoltAgent/awesome-design-md`](https://github.com/VoltAgent/awesome-design-md), and the
+[skills](https://github.com/vercel-labs/skills) CLI. The design systems documented in
+[design-systems.md](skills/lucent/reference/design-systems.md) belong to their own authors; this
+repository documents how to choose and use them well, and documents their free tiers only.
 
 ## License
 
