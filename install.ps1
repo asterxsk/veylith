@@ -1,14 +1,14 @@
 <#
-  ouu-shiit installer for PowerShell 7+ (also works on Windows PowerShell 5.1).
+  Veylith installer for PowerShell 7+ (also works on Windows PowerShell 5.1).
 
   Built on the skills CLI from vercel-labs - https://skills.sh
-  Installs ouu-shiit, plus the design skills it is designed to be used with.
+  Installs the Veylith skill collection, plus the design skills it is built to work with.
 
     ./install.ps1                    install everything, for every agent on the machine, globally
     ./install.ps1 -Agent '*'         install for every agent the CLI knows, installed or not
     ./install.ps1 -Agent cursor      install for Cursor only
     ./install.ps1 -Scope project     install into the current project instead of ~/
-    ./install.ps1 -Skill 0           skip the companion skills, install ouu-shiit only
+    ./install.ps1 -Skill 0           skip the companion design skills
     ./install.ps1 -Video 0           skip HyperFrames, the video and deck toolchain
 
   The same knobs are read from the environment when the parameters are omitted,
@@ -22,7 +22,7 @@
 
   Non-interactive one-liner:
 
-    irm https://raw.githubusercontent.com/asterxsk/ouu-shiit/main/install.ps1 | iex
+    irm https://raw.githubusercontent.com/asterxsk/veylith/main/install.ps1 | iex
 #>
 
 [CmdletBinding()]
@@ -62,15 +62,16 @@ function Add-Skill {
 }
 
 Write-Host ''
-Write-Host 'ouu-shiit' -NoNewline
-Write-Host ' - effects, motion, and video for any surface'
+Write-Host 'Veylith' -NoNewline
+Write-Host ' - principles for better work'
 $agentLabel = if ($Agent) { $Agent } else { 'all detected' }
 Write-Host "agent: $agentLabel   scope: $scopeLabel"
 
-Add-Skill asterxsk/ouu-shiit ouu-shiit
+Add-Skill asterxsk/veylith ouu-shiit
 
 if ($Skill -ne '0') {
-  # The design skills this one pairs with. Each is a separate upstream repo.
+  # Companion design skills: poise lives here; the others have upstream repos.
+  Add-Skill asterxsk/veylith poise
   Add-Skill pbakaus/impeccable impeccable
   Add-Skill Leonxlnx/taste-skill design-taste-frontend
   Add-Skill vercel-labs/agent-skills web-design-guidelines
@@ -95,6 +96,7 @@ Write-Host ''
 Write-Host '  ouu-shiit              the effect layer (this repo)'
 
 if ($Skill -ne '0') {
+  Write-Host '  poise                  design cleanup, standalone or paired with effects'
   Write-Host '  impeccable             visual direction and craft'
   Write-Host '  design-taste-frontend  brief inference, motion budget, pre-flight check'
   Write-Host '  web-design-guidelines  interface audit'

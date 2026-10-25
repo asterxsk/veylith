@@ -1,0 +1,4 @@
+interface:
+  display_name: "Poise"
+  short_description: "Remove generic AI styling and give work poise"
+  default_prompt: "Use $poise to remove generic AI styling and polish this artifact while preserving its character and meaning."

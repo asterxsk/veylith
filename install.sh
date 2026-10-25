@@ -1,14 +1,14 @@
 #!/usr/bin/env sh
-# ouu-shiit installer
+# Veylith installer
 #
 # Built on the skills CLI from vercel-labs — https://skills.sh
-# Installs ouu-shiit, plus the design skills it is designed to be used with.
+# Installs the Veylith skill collection, plus the design skills it is built to work with.
 #
 #   ./install.sh                 install everything, for every agent on the machine, globally
 #   AGENT='*' ./install.sh       install for every agent the CLI knows, installed or not
 #   AGENT=cursor ./install.sh    install for Cursor only
 #   SCOPE= ./install.sh          install into the current project instead of ~/
-#   SKILL=0 ./install.sh         skip the companion skills, install ouu-shiit only
+#   SKILL=0 ./install.sh         skip the companion design skills
 #   VIDEO=0 ./install.sh         skip HyperFrames, the video and deck toolchain
 #
 # On Windows, run this from Git Bash, or use install.cmd.
@@ -33,7 +33,7 @@ add() {
   #
   # </dev/null is load-bearing under `curl | sh`. The shell reads this script
   # from stdin, and npx inherits that stdin — the CLI drains it, so the shell
-  # hits EOF after the first add and exits 0 having installed one of the five
+  # hits EOF after the first add and exits 0 having installed one of the six
   # skills. Detaching the child from stdin keeps the script readable.
   if [ -n "$AGENT" ]; then
     printf '\n\033[1m→ npx skills add %s %s -a %s\033[0m\n' "$*" "$SCOPE" "$AGENT"
@@ -49,10 +49,11 @@ add() {
 printf '\n\033[1mouu-shiit\033[0m — effects, motion, and video for any surface\n'
 printf 'agent: %s   scope: %s\n' "${AGENT:-(all detected)}" "${SCOPE:-(project)}"
 
-add asterxsk/ouu-shiit --skill ouu-shiit
+add asterxsk/veylith --skill ouu-shiit
 
 if [ "$SKILL" != "0" ]; then
-  # The design skills this one pairs with. Each is a separate upstream repo.
+  # Companion design skills: poise lives here; the others have upstream repos.
+  add asterxsk/veylith --skill poise
   add pbakaus/impeccable --skill impeccable
   add Leonxlnx/taste-skill --skill design-taste-frontend
   add vercel-labs/agent-skills --skill web-design-guidelines
@@ -80,6 +81,7 @@ EOF
 
 if [ "$SKILL" != "0" ]; then
   cat <<'EOF'
+  poise                  design cleanup, standalone or paired with effects
   impeccable             visual direction and craft
   design-taste-frontend  brief inference, motion budget, pre-flight check
   web-design-guidelines  interface audit

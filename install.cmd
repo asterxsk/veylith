@@ -1,17 +1,17 @@
 @echo off
-rem ouu-shiit installer for Windows.
+rem Veylith installer for Windows.
 rem
 rem Built on the skills CLI from vercel-labs - https://skills.sh
 rem
 rem   install.cmd                 install everything, for every agent on the machine, globally
 rem   set AGENT=* & install.cmd   install for every agent the CLI knows, installed or not
 rem   set SCOPE= & install.cmd    install into the current project instead of the user dir
-rem   set SKILL=0 & install.cmd   skip the companion skills, install ouu-shiit only
+rem   set SKILL=0 & install.cmd   skip the companion design skills
 rem   set VIDEO=0 & install.cmd   skip HyperFrames, the video and deck toolchain
 rem
 rem Without cloning, from cmd.exe:
 rem
-rem   curl -fsSL https://raw.githubusercontent.com/asterxsk/ouu-shiit/main/install.cmd | cmd
+rem   curl -fsSL https://raw.githubusercontent.com/asterxsk/veylith/main/install.cmd | cmd
 rem
 rem Git Bash users can run ./install.sh instead.
 
@@ -39,15 +39,21 @@ if errorlevel 1 (
 )
 
 echo.
-echo ouu-shiit - effects, motion, and video for any creative surface
+echo Veylith - principles for better work
 if defined AGENT (echo agent: %AGENT%   scope: %SCOPE%) else (echo agent: all detected   scope: %SCOPE%)
 
 echo.
-echo npx skills add asterxsk/ouu-shiit --skill ouu-shiit
-call npx -y skills add asterxsk/ouu-shiit --skill ouu-shiit %SCOPE% %AGENTFLAG% -y <nul
+echo npx skills add asterxsk/veylith --skill ouu-shiit
+call npx -y skills add asterxsk/veylith --skill ouu-shiit %SCOPE% %AGENTFLAG% -y <nul
 if errorlevel 1 exit /b 1
 
 if not "%SKILL%"=="0" (
+  rem Companion design skills: poise lives here; the others have upstream repos.
+  echo.
+  echo npx skills add asterxsk/veylith --skill poise
+  call npx -y skills add asterxsk/veylith --skill poise %SCOPE% %AGENTFLAG% -y <nul
+  if errorlevel 1 exit /b 1
+
   echo.
   echo npx skills add pbakaus/impeccable --skill impeccable
   call npx -y skills add pbakaus/impeccable --skill impeccable %SCOPE% %AGENTFLAG% -y <nul
@@ -85,6 +91,7 @@ echo Done.
 echo.
 echo   ouu-shiit              the effect layer (this repo)
 if not "%SKILL%"=="0" (
+  echo   poise                  design cleanup, standalone or paired with effects
   echo   impeccable             visual direction and craft
   echo   design-taste-frontend  brief inference, motion budget, pre-flight check
   echo   web-design-guidelines  interface audit
