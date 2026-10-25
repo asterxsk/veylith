@@ -3,18 +3,32 @@ rem ouu-shiit installer for Windows.
 rem
 rem Built on the skills CLI from vercel-labs - https://skills.sh
 rem
-rem   install.cmd                 install everything, for Claude Code, globally
-rem   set AGENT=* & install.cmd   install for every agent detected on the machine
+rem   install.cmd                 install everything, for every agent on the machine, globally
+rem   set AGENT=* & install.cmd   install for every agent the CLI knows, installed or not
 rem   set SCOPE= & install.cmd    install into the current project instead of the user dir
 rem   set SKILL=0 & install.cmd   skip the companion skills, install ouu-shiit only
 rem   set VIDEO=0 & install.cmd   skip HyperFrames, the video and deck toolchain
+rem
+rem Without cloning, from cmd.exe:
+rem
+rem   curl -fsSL https://raw.githubusercontent.com/asterxsk/ouu-shiit/main/install.cmd | cmd
 rem
 rem Git Bash users can run ./install.sh instead.
 
 setlocal enabledelayedexpansion
 
-if "%AGENT%"=="" set AGENT=claude-code
 if not defined SCOPE set SCOPE=-g
+
+rem The <nul on every npx call below is load-bearing under `... install.cmd | cmd`:
+rem the shell reads this script from stdin and npx inherits it, so without the
+rem redirect the CLI drains the rest of the file and cmd stops after the first
+rem skill. install.sh has the same guard as </dev/null.
+rem
+rem AGENT unset means install to every agent the CLI detects on the machine, plus
+rem the .agents/skills store they share. Pinning claude-code here installed the
+rem skills only for Claude Code, which is not the intent.
+set AGENTFLAG=
+if defined AGENT set AGENTFLAG=-a %AGENT%
 if "%SKILL%"=="" set SKILL=1
 if "%VIDEO%"=="" set VIDEO=1
 
@@ -26,27 +40,27 @@ if errorlevel 1 (
 
 echo.
 echo ouu-shiit - effects, motion, and video for any creative surface
-echo agent: %AGENT%   scope: %SCOPE%
+if defined AGENT (echo agent: %AGENT%   scope: %SCOPE%) else (echo agent: all detected   scope: %SCOPE%)
 
 echo.
 echo npx skills add asterxsk/ouu-shiit --skill ouu-shiit
-call npx -y skills add asterxsk/ouu-shiit --skill ouu-shiit %SCOPE% -a %AGENT% -y
+call npx -y skills add asterxsk/ouu-shiit --skill ouu-shiit %SCOPE% %AGENTFLAG% -y <nul
 if errorlevel 1 exit /b 1
 
 if not "%SKILL%"=="0" (
   echo.
   echo npx skills add pbakaus/impeccable --skill impeccable
-  call npx -y skills add pbakaus/impeccable --skill impeccable %SCOPE% -a %AGENT% -y
+  call npx -y skills add pbakaus/impeccable --skill impeccable %SCOPE% %AGENTFLAG% -y <nul
   if errorlevel 1 exit /b 1
 
   echo.
   echo npx skills add Leonxlnx/taste-skill --skill design-taste-frontend
-  call npx -y skills add Leonxlnx/taste-skill --skill design-taste-frontend %SCOPE% -a %AGENT% -y
+  call npx -y skills add Leonxlnx/taste-skill --skill design-taste-frontend %SCOPE% %AGENTFLAG% -y <nul
   if errorlevel 1 exit /b 1
 
   echo.
   echo npx skills add vercel-labs/agent-skills --skill web-design-guidelines
-  call npx -y skills add vercel-labs/agent-skills --skill web-design-guidelines %SCOPE% -a %AGENT% -y
+  call npx -y skills add vercel-labs/agent-skills --skill web-design-guidelines %SCOPE% %AGENTFLAG% -y <nul
   if errorlevel 1 exit /b 1
 )
 
@@ -61,7 +75,7 @@ if not "%VIDEO%"=="0" (
   rem "npx hyperframes skills update" pulls the rest of the core set.
   echo.
   echo npx skills add heygen-com/hyperframes --skill hyperframes
-  call npx -y skills add heygen-com/hyperframes --skill hyperframes %SCOPE% -a %AGENT% -y
+  call npx -y skills add heygen-com/hyperframes --skill hyperframes %SCOPE% %AGENTFLAG% -y <nul
   if errorlevel 1 exit /b 1
 )
 

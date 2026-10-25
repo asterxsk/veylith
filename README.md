@@ -30,29 +30,39 @@ That installs this skill alone. But this skill is only half of the job on its ow
 
 ### The whole bundle
 
+One command, picked by your shell. Every route installs the same set, for every
+agent detected on the machine.
+
+**macOS / Linux / Git Bash**
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/asterxsk/ouu-shiit/main/install.sh | sh
 ```
 
-Or clone and run it locally, which lets you configure the target agent and scope:
-
-```bash
-git clone --depth 1 https://github.com/asterxsk/ouu-shiit && cd ouu-shiit && ./install.sh
-```
-
-On Windows, `install.ps1` does the same from PowerShell:
-
-```powershell
-./install.ps1
-```
-
-Or without cloning:
+**Windows, PowerShell** — no `curl.exe` alias surprises, no clone:
 
 ```powershell
 irm https://raw.githubusercontent.com/asterxsk/ouu-shiit/main/install.ps1 | iex
 ```
 
-Everywhere else on Windows: from Git Bash the shell script works as-is, and from `cmd.exe` use `install.cmd`.
+**Windows, `cmd.exe`** — the `.cmd` script piped straight into `cmd`:
+
+```bat
+curl -fsSL https://raw.githubusercontent.com/asterxsk/ouu-shiit/main/install.cmd | cmd
+```
+
+`curl.exe` ships with Windows 10 1803 and later; in PowerShell, `curl` alone is an
+alias for `Invoke-WebRequest` and takes none of these flags, so write `curl.exe`.
+If a proxy or corp TLS policy blocks the fetch, clone and run it instead.
+
+**Clone and run** — any of the three, with the target agent and scope configurable:
+
+```bash
+git clone --depth 1 https://github.com/asterxsk/ouu-shiit && cd ouu-shiit
+./install.sh          # macOS, Linux, Git Bash
+./install.ps1         # PowerShell 7+ and Windows PowerShell 5.1
+install.cmd           # cmd.exe
+```
 
 ### What the installer adds
 
@@ -68,13 +78,14 @@ Installer options, by environment variable:
 
 | Variable | Default | Effect |
 |---|---|---|
-| `AGENT` | `claude-code` | Which agent to install for. `'*'` for every agent detected. |
+| `AGENT` | *(unset)* | Which agent to install for. Unset installs for every agent detected on the machine — Claude Code, Codex, Cursor, and the rest — through the shared `.agents/skills` store. `'*'` targets every agent the CLI knows, installed or not. |
 | `SCOPE` | `-g` | `-g` installs to the user directory. Empty installs into the current project. |
 | `SKILL` | `1` | Set to `0` to install ouu-shiit without the companion design skills. |
 | `VIDEO` | `1` | Set to `0` to skip HyperFrames, the video and deck toolchain. Worth turning off if you only want web effects. |
 
 ```bash
-AGENT='*' ./install.sh          # every agent on this machine
+AGENT=claude-code ./install.sh  # Claude Code only
+AGENT='*' ./install.sh          # every agent the CLI knows, installed or not
 SCOPE= ./install.sh             # this project only
 SKILL=0 ./install.sh            # ouu-shiit alone
 ```
@@ -82,9 +93,10 @@ SKILL=0 ./install.sh            # ouu-shiit alone
 `install.ps1` takes the same four as parameters — `-Agent`, `-Scope`, `-Skill`, `-Video` — and falls back to the environment variables of the same name. It splits `SCOPE` into two values rather than one: `-g` (the default) for the user directory, `project` for the current project — `-Scope project`. PowerShell cannot hold an empty environment variable, so an empty `SCOPE` has no equivalent there.
 
 ```powershell
-./install.ps1 -Agent '*'        # every agent on this machine
-./install.ps1 -Scope project    # this project only
-./install.ps1 -Skill 0          # ouu-shiit alone
+./install.ps1 -Agent claude-code  # Claude Code only
+./install.ps1 -Agent '*'          # every agent the CLI knows, installed or not
+./install.ps1 -Scope project      # this project only
+./install.ps1 -Skill 0            # ouu-shiit alone
 ```
 
 ### Manual install

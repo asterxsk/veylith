@@ -4,8 +4,8 @@
   Built on the skills CLI from vercel-labs - https://skills.sh
   Installs ouu-shiit, plus the design skills it is designed to be used with.
 
-    ./install.ps1                    install everything, for Claude Code, globally
-    ./install.ps1 -Agent '*'         install for every agent detected on the machine
+    ./install.ps1                    install everything, for every agent on the machine, globally
+    ./install.ps1 -Agent '*'         install for every agent the CLI knows, installed or not
     ./install.ps1 -Agent cursor      install for Cursor only
     ./install.ps1 -Scope project     install into the current project instead of ~/
     ./install.ps1 -Skill 0           skip the companion skills, install ouu-shiit only
@@ -27,7 +27,7 @@
 
 [CmdletBinding()]
 param(
-  [string]$Agent = $(if ($env:AGENT) { $env:AGENT } else { 'claude-code' }),
+  [string]$Agent = $(if ($env:AGENT) { $env:AGENT } else { '' }),
   [string]$Scope = $(if ($env:SCOPE) { $env:SCOPE } else { '-g' }),
   [string]$Skill = $(if ($env:SKILL) { $env:SKILL } else { '1' }),
   [string]$Video = $(if ($env:VIDEO) { $env:VIDEO } else { '1' })
@@ -47,9 +47,13 @@ if (-not (Get-Command npx -ErrorAction SilentlyContinue)) {
 function Add-Skill {
   param([string]$Repo, [string]$Name)
 
+  # No -Agent means install to every agent the CLI detects on the machine, plus
+  # the .agents/skills store they share. Pinning claude-code here installed the
+  # skills only for Claude Code, which is not the intent.
   $cliArgs = @('-y', 'skills', 'add', $Repo, '--skill', $Name)
   if ($scopeFlag) { $cliArgs += $scopeFlag }
-  $cliArgs += @('-a', $Agent, '-y')
+  if ($Agent) { $cliArgs += @('-a', $Agent) }
+  $cliArgs += '-y'
 
   Write-Host ''
   Write-Host "-> npx $($cliArgs -join ' ')" -ForegroundColor Cyan
@@ -60,7 +64,8 @@ function Add-Skill {
 Write-Host ''
 Write-Host 'ouu-shiit' -NoNewline
 Write-Host ' - effects, motion, and video for any surface'
-Write-Host "agent: $Agent   scope: $scopeLabel"
+$agentLabel = if ($Agent) { $Agent } else { 'all detected' }
+Write-Host "agent: $agentLabel   scope: $scopeLabel"
 
 Add-Skill asterxsk/ouu-shiit ouu-shiit
 

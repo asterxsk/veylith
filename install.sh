@@ -4,8 +4,8 @@
 # Built on the skills CLI from vercel-labs — https://skills.sh
 # Installs ouu-shiit, plus the design skills it is designed to be used with.
 #
-#   ./install.sh                 install everything, for Claude Code, globally
-#   AGENT='*' ./install.sh       install for every agent detected on the machine
+#   ./install.sh                 install everything, for every agent on the machine, globally
+#   AGENT='*' ./install.sh       install for every agent the CLI knows, installed or not
 #   AGENT=cursor ./install.sh    install for Cursor only
 #   SCOPE= ./install.sh          install into the current project instead of ~/
 #   SKILL=0 ./install.sh         skip the companion skills, install ouu-shiit only
@@ -15,7 +15,7 @@
 
 set -eu
 
-AGENT="${AGENT:-claude-code}"
+AGENT="${AGENT-}"
 SCOPE="${SCOPE--g}"
 SKILL="${SKILL:-1}"
 VIDEO="${VIDEO:-1}"
@@ -26,19 +26,28 @@ if ! command -v npx >/dev/null 2>&1; then
 fi
 
 add() {
-  printf '\n\033[1m→ npx skills add %s\033[0m\n' "$*"
-  # SCOPE is intentionally unquoted: it is a flag or empty.
+  # AGENT is intentionally unquoted and may be empty: it is a name, or absent.
+  # With no -a flag the CLI installs to every agent it detects on the machine
+  # (and adds the .agents/skills store they share). Pinning claude-code here
+  # installed the skills only for Claude Code, which is not the intent.
   #
   # </dev/null is load-bearing under `curl | sh`. The shell reads this script
   # from stdin, and npx inherits that stdin — the CLI drains it, so the shell
   # hits EOF after the first add and exits 0 having installed one of the five
   # skills. Detaching the child from stdin keeps the script readable.
-  # shellcheck disable=SC2086
-  npx -y skills add "$@" $SCOPE -a "$AGENT" -y </dev/null
+  if [ -n "$AGENT" ]; then
+    printf '\n\033[1m→ npx skills add %s %s -a %s\033[0m\n' "$*" "$SCOPE" "$AGENT"
+    # shellcheck disable=SC2086
+    npx -y skills add "$@" $SCOPE -a "$AGENT" -y </dev/null
+  else
+    printf '\n\033[1m→ npx skills add %s %s\033[0m\n' "$*" "$SCOPE"
+    # shellcheck disable=SC2086
+    npx -y skills add "$@" $SCOPE -y </dev/null
+  fi
 }
 
 printf '\n\033[1mouu-shiit\033[0m — effects, motion, and video for any surface\n'
-printf 'agent: %s   scope: %s\n' "$AGENT" "${SCOPE:-(project)}"
+printf 'agent: %s   scope: %s\n' "${AGENT:-(all detected)}" "${SCOPE:-(project)}"
 
 add asterxsk/ouu-shiit --skill ouu-shiit
 
