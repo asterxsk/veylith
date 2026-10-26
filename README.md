@@ -8,8 +8,7 @@ stretch them over work they were never meant for.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-18181B)](LICENSE)
 [![Install: npx skills](https://img.shields.io/badge/install-npx%20skills-18181B)](https://skills.sh)
-[![Skills: 3](https://img.shields.io/badge/skills-3-18181B)](skills)
-[![Video: by request](https://img.shields.io/badge/video-on%20request-18181B)](skills/lucent/reference/handoffs.md)
+[![Skills: 4](https://img.shields.io/badge/skills-4-18181B)](skills)
 
 The ideas that hold across the collection:
 
@@ -30,6 +29,7 @@ No installer, no bundle, no companion skill that arrives uninvited.
 | Skill | Discipline | What it does |
 |---|---|---|
 | **[blueprint](skills/blueprint/SKILL.md)** | Intent and agreement | Uses native questions to establish the brief, asks how many prototypes to explore, refines the chosen design, and implements when the user says to proceed. |
+| **[handoff](skills/handoff/SKILL.md)** | Continuity | Replaces `HANDOFF.md` in the current directory with concise user-message summaries, completed work, every changed file, verification, and next steps. |
 | **[lucent](skills/lucent/SKILL.md)** | Clarity and precision | Turns a vague requirement into a polished, legible interface — direction, design system, fundamentals, any effect that earns its place, and the audit. |
 | **[poise](skills/poise/SKILL.md)** | Composure and control | Makes output look confident without trying to look sophisticated — removes generic AI-looking habits and settles hierarchy, spacing, type, and motion across web, print, decks, and video. |
 
@@ -44,6 +44,7 @@ Built on the [skills](https://skills.sh) CLI from
 
 ```bash
 npx skills add asterxsk/veylith --skill blueprint -g -y
+npx skills add asterxsk/veylith --skill handoff -g -y
 npx skills add asterxsk/veylith --skill lucent -g -y
 npx skills add asterxsk/veylith --skill poise  -g -y
 ```
@@ -79,6 +80,22 @@ the interface implementation and poise can make the finishing pass when availabl
 
 ```bash
 npx skills add asterxsk/veylith --skill blueprint -g -y
+```
+
+---
+
+## Handoff
+
+[handoff](skills/handoff/SKILL.md) writes a compact `HANDOFF.md` in the directory where you
+invoke it. It summarizes every user message through the previous turn, completed work,
+all changed files, verification, and what the next session should do. Each invocation
+replaces the previous handoff completely, keeping one current record instead of a growing log.
+
+Invoke `$handoff`, optionally with the next session's focus. It returns only the saved file's
+path; its Codex invocation policy remains explicit-only.
+
+```bash
+npx skills add asterxsk/veylith --skill handoff -g -y
 ```
 
 ---
@@ -200,6 +217,9 @@ npx skills add asterxsk/veylith --skill poise -g -y
 skills/blueprint/
 ├── SKILL.md                    native questions, discovery, prototypes, and implementation
 └── agents/openai.yaml          display name and default prompt
+skills/handoff/
+├── SKILL.md                    concise session handoff, replaced on each invocation
+└── agents/openai.yaml          display name, default prompt, and explicit invocation policy
 skills/lucent/
 ├── SKILL.md                    the loop, the contracts, the handoff protocol
 └── reference/
