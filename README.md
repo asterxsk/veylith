@@ -8,7 +8,7 @@ stretch them over work they were never meant for.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-18181B)](LICENSE)
 [![Install: npx skills](https://img.shields.io/badge/install-npx%20skills-18181B)](https://skills.sh)
-[![Skills: 2](https://img.shields.io/badge/skills-2-18181B)](skills)
+[![Skills: 3](https://img.shields.io/badge/skills-3-18181B)](skills)
 [![Video: by request](https://img.shields.io/badge/video-on%20request-18181B)](skills/lucent/reference/handoffs.md)
 
 The ideas that hold across the collection:
@@ -29,6 +29,7 @@ No installer, no bundle, no companion skill that arrives uninvited.
 
 | Skill | Discipline | What it does |
 |---|---|---|
+| **[blueprint](skills/blueprint/SKILL.md)** | Intent and agreement | Uses native questions to establish the brief, asks how many prototypes to explore, refines the chosen design, and implements when the user says to proceed. |
 | **[lucent](skills/lucent/SKILL.md)** | Clarity and precision | Turns a vague requirement into a polished, legible interface — direction, design system, fundamentals, any effect that earns its place, and the audit. |
 | **[poise](skills/poise/SKILL.md)** | Composure and control | Makes output look confident without trying to look sophisticated — removes generic AI-looking habits and settles hierarchy, spacing, type, and motion across web, print, decks, and video. |
 
@@ -42,6 +43,7 @@ Built on the [skills](https://skills.sh) CLI from
 [vercel-labs/skills](https://github.com/vercel-labs/skills). **Node 22.20+ required.**
 
 ```bash
+npx skills add asterxsk/veylith --skill blueprint -g -y
 npx skills add asterxsk/veylith --skill lucent -g -y
 npx skills add asterxsk/veylith --skill poise  -g -y
 ```
@@ -60,6 +62,23 @@ A skill is just a folder with a `SKILL.md` in it, so cloning works too:
 ```bash
 git clone --depth 1 https://github.com/asterxsk/veylith /tmp/veylith
 cp -r /tmp/veylith/skills/lucent ~/.claude/skills/lucent
+```
+
+---
+
+## Blueprint
+
+[blueprint](skills/blueprint/SKILL.md) combines brainstorming, probing questions, and runnable
+prototypes in one workflow. It uses the harness's native question tool to establish shared
+understanding, then asks the user how many distinct prototypes to compare. The user can select
+or combine directions and refine them for as many rounds as needed. Implementation begins when
+the user says to proceed, including an explicit request to skip prototypes.
+
+Plans and long documents stay in markdown files. Blueprint works on its own; Lucent can guide
+the interface implementation and poise can make the finishing pass when available.
+
+```bash
+npx skills add asterxsk/veylith --skill blueprint -g -y
 ```
 
 ---
@@ -178,6 +197,9 @@ npx skills add asterxsk/veylith --skill poise -g -y
 ## Repository layout
 
 ```
+skills/blueprint/
+├── SKILL.md                    native questions, discovery, prototypes, and implementation
+└── agents/openai.yaml          display name and default prompt
 skills/lucent/
 ├── SKILL.md                    the loop, the contracts, the handoff protocol
 └── reference/

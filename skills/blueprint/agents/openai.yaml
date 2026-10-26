@@ -1,0 +1,4 @@
+interface:
+  display_name: "Blueprint"
+  short_description: "Question, prototype, refine, then implement"
+  default_prompt: "Use $blueprint to clarify what I want through native questions, ask how many prototypes I want, refine my chosen design, and implement when I say to proceed."
