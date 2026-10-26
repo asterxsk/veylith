@@ -169,12 +169,20 @@ Cult UI, Kokonut UI, Skiper UI, and Watermelon UI ship free copy-paste versions 
 When the *section* is undecided rather than the effect, [design-galleries.md](skills/lucent/reference/design-galleries.md)
 collects real shipped hero, navbar, CTA, footer, and pricing sections to calibrate against.
 
+### Illustrations and diagrams
+
+When the website needs an SVG illustration, an empty-state figure, or a conceptual diagram,
+Lucent can use **Hairline**: reuse a suitable premade figure or create one with `hairline-create`.
+The [Hairline reference](skills/lucent/reference/hairline.md) covers static SVG output and
+optional interaction. A still SVG needs no Hairline runtime; the skill stays an optional handoff.
+
 ### What it hands off
 
 Lucent covers the interface. Everything else is a named handoff:
 
 | The brief is | The skill |
 |---|---|
+| An SVG illustration, isometric figure, or conceptual diagram | `hairline-create` |
 | A video, motion graphic, or slide deck | `hyperframes` |
 | Music, SFX, voiceover, stock media | `media-use` |
 | A chart, graph, or dashboard metric | `dataviz` |
@@ -227,6 +235,7 @@ skills/lucent/
     ├── direction.md            three dials, mode, the refusal list
     ├── design-systems.md       the seven core systems plus the named brands
     ├── fundamentals.md         hierarchy, spacing, type, colour, states, a11y
+    ├── hairline.md             premade figures, custom illustrations, static SVG output
     ├── usage-map.md            where each effect belongs, and where it does not
     ├── motion.md               Motion and Lenis, and the scroll-ownership rule
     ├── three-d.md              react-three-fiber and Spline
@@ -253,7 +262,8 @@ Builds on the work of [`pmndrs/react-three-fiber`](https://github.com/pmndrs/rea
 [`darkroomengineering/lenis`](https://github.com/darkroomengineering/lenis),
 [`nolly-studio/cult-ui`](https://github.com/nolly-studio/cult-ui), [Kokonut UI](https://kokonutui.com),
 [Skiper UI](https://skiperui.com), [`WatermelonCorp`](https://github.com/WatermelonCorp),
-[`VoltAgent/awesome-design-md`](https://github.com/VoltAgent/awesome-design-md), and the
+[`VoltAgent/awesome-design-md`](https://github.com/VoltAgent/awesome-design-md),
+[`lucasmarkes/hairline`](https://github.com/lucasmarkes/hairline), and the
 [skills](https://github.com/vercel-labs/skills) CLI. The design systems documented in
 [design-systems.md](skills/lucent/reference/design-systems.md) belong to their own authors; this
 repository documents how to choose and use them well, and documents their free tiers only.

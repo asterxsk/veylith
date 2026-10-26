@@ -26,6 +26,27 @@ Nothing in this repository installs another skill. This is the protocol that rep
 Node 22.20+ is required by the skills CLI. If `npx` is missing or old, that is the first thing to
 say, not a reason to skip the handoff silently.
 
+## Hairline illustrations and diagrams
+
+**`hairline-create`** — custom isometric line figures for website illustrations, SVG assets,
+empty states, and conceptual diagrams. Premade figures are also available in the
+[Hairline catalogue](https://hairline.lucasmarkes.com). Reuse one when it already says what the
+page needs; create a new figure when the metaphor is specific to the brief.
+
+Use an available skill directly. If it is missing and needed, follow the protocol above with:
+
+```bash
+npx skills add lucasmarkes/hairline --skill hairline-create -g -y
+```
+
+The [upstream skill](https://github.com/lucasmarkes/hairline/blob/main/skills/hairline-create/SKILL.md)
+produces a self-contained HTML figure. For static SVG output, premade reuse, and website
+integration, read [hairline.md](hairline.md). A static SVG adds no Hairline runtime to the site;
+installing the authoring skill is separate from adding `@lucasmarkes/hairline` to a project.
+
+**Why not bundled:** this is an optional illustration style and authoring workflow. Lucent
+continues to own the website, handing over only the figure.
+
 ## Video, motion graphics, and decks
 
 **`hyperframes`** — HTML/CSS/JS → deterministic MP4. It is the router for the whole video

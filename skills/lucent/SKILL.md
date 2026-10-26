@@ -90,6 +90,18 @@ The short form:
 - **Every interactive thing has hover, focus, active, disabled, loading, empty, and error.**
 - **Dark mode is a token swap, defined and tested.** Not an inversion filter.
 
+### Website illustrations and diagrams
+
+When a website needs an SVG illustration, an empty-state figure, or a conceptual diagram,
+consider **Hairline** if its isometric line style fits the direction. Reuse a suitable premade
+figure before authoring a new one with `hairline-create`. A composed static SVG is a complete
+result; interaction is optional and must earn its place like any other effect.
+
+Read [reference/hairline.md](reference/hairline.md) for choosing a figure, creating one, turning
+a rendered pose into a standalone SVG, and integrating it into the page. Hairline is optional;
+Lucent still works without it. Availability and installation follow
+[reference/handoffs.md](reference/handoffs.md#hairline-illustrations-and-diagrams).
+
 ## Step 4 — The effect layer
 
 Read [reference/usage-map.md](reference/usage-map.md) first: it says which surfaces take an
@@ -151,6 +163,7 @@ it. Full protocol and command lines in [reference/handoffs.md](reference/handoff
 
 | The brief is | Ask about |
 |---|---|
+| An SVG illustration, isometric figure, or conceptual diagram | `hairline-create` — [reference/hairline.md](reference/hairline.md) |
 | A video, motion graphic, or slide deck | `hyperframes` (decks: `slideshow`) |
 | Music, SFX, voiceover, stock media | `media-use` |
 | A chart, graph, dashboard metric, or data visualisation | `dataviz` |
