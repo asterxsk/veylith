@@ -28,10 +28,4 @@
   <text x="180" y="290" class="sans" font-size="20" fill="#D4D4D8">Skills built around precision, resourcefulness,</text>
   <text x="180" y="320" class="sans" font-size="20" fill="#8A8A93">and getting the most out of what is already there.</text>
 
-  <!-- collection -->
-  <g class="sans" text-anchor="end">
-    <text x="1188" y="152" font-size="19" fill="#F5F5F4">lucent</text>
-    <text x="1188" y="188" font-size="19" fill="#A1A1AA">poise</text>
-    <text x="1188" y="224" font-size="19" fill="#5C5C63">more soon</text>
-  </g>
 </svg>
