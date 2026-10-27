@@ -1,0 +1,4 @@
+interface:
+  display_name: "Office"
+  short_description: "Make documents, decks, sheets, PDFs, images and video in the ArtCraft apps"
+  default_prompt: "Use $office to create or edit this artifact in the ArtCraft app suite, through code mode, and ask before installing anything that is missing."

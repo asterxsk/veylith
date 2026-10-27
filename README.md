@@ -8,7 +8,7 @@ stretch them over work they were never meant for.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-18181B)](LICENSE)
 [![Install: npx skills](https://img.shields.io/badge/install-npx%20skills-18181B)](https://skills.sh)
-[![Skills: 4](https://img.shields.io/badge/skills-4-18181B)](skills)
+[![Skills: 5](https://img.shields.io/badge/skills-5-18181B)](skills)
 
 The ideas that hold across the collection:
 
@@ -32,6 +32,7 @@ No installer, no bundle, no companion skill that arrives uninvited.
 | **[handoff](skills/handoff/SKILL.md)** | Continuity | Replaces `HANDOFF.md` in the current directory with concise user-message summaries, completed work, every changed file, verification, and next steps. |
 | **[lucent](skills/lucent/SKILL.md)** | Clarity and precision | Turns a vague requirement into a polished, legible interface — direction, design system, fundamentals, any effect that earns its place, and the audit. |
 | **[poise](skills/poise/SKILL.md)** | Composure and control | Makes output look confident without trying to look sophisticated — removes generic AI-looking habits and settles hierarchy, spacing, type, and motion across web, print, decks, and video. |
+| **[office](skills/office/SKILL.md)** | Production | Makes real documents, decks, sheets, PDFs, images, vectors, video, motion graphics and audio in the ArtCraft app suite, one code-mode call at a time, and asks before installing an app that is missing. |
 
 More skills are landing. Each is a folder with a `SKILL.md`, installable on its own.
 
@@ -46,6 +47,7 @@ Built on the [skills](https://skills.sh) CLI from
 npx skills add asterxsk/veylith --skill blueprint -g -y
 npx skills add asterxsk/veylith --skill handoff -g -y
 npx skills add asterxsk/veylith --skill lucent -g -y
+npx skills add asterxsk/veylith --skill office -g -y
 npx skills add asterxsk/veylith --skill poise  -g -y
 ```
 
@@ -219,6 +221,39 @@ npx skills add asterxsk/veylith --skill poise -g -y
 
 ---
 
+## Office
+
+[office](skills/office/SKILL.md) does the production work: documents, decks, spreadsheets, PDFs,
+image editing, vector illustration, video, motion graphics and audio, in the ArtCraft suite.
+Thirteen native apps, one contract — every app has a CLI, a JSON command channel and an MCP
+server, and every ribbon button is a command an agent can run.
+
+Seven of them are already wired through **code mode**, a single MCP server whose one `exec` tool
+runs JavaScript against the others. That matters: registering the suite directly puts more than
+three hundred tool schemas into context before any work starts, and PdfCraft alone has 179. With
+code mode, one call does the discovery, the work and the reduction, and only the result comes
+back. Codex and Pi have code mode built in; Claude Code does not, so the skill installs it as one
+stdio server and says so when it does.
+
+| App | Makes |
+|---|---|
+| WordCraft · DeckCraft · GridCraft | `.docx`, `.pptx`, `.xlsx` |
+| PdfCraft | combine, split, forms, redaction, OCR, signing, PDF/A |
+| PhotoCraft · VectorCraft | `.psd` and `.pcraft`, `.ai` and `.svg` |
+| FilmCraft · EffectCraft · SoundCraft | cuts, motion graphics, mixed audio |
+| DesignCraft · FigCraft · CADCraft · LightCraft | print layout, prototypes, drawings, raw photo |
+
+The rules are the collection's rules. Locate the app that owns the artifact. Ask before installing
+anything that is missing, and name the exact command when you ask. Drive commands rather than
+pixels. Render the result before calling it finished. Hand judgement work — how the deck should
+feel, whether the chart is honest — to poise, dataviz or lucent.
+
+```bash
+npx skills add asterxsk/veylith --skill office -g -y
+```
+
+---
+
 ## Repository layout
 
 ```
@@ -252,6 +287,14 @@ skills/poise/
 └── references/
     ├── mediums.md              inspection and verification by medium
     └── poster-calibration.md   concrete poster cleanup comparison
+skills/office/
+├── SKILL.md                    the loop, code mode, and the install-consent rule
+├── agents/openai.yaml          display name and default prompt
+└── reference/
+    ├── apps.md                 every app: MCP server, CLI, tools, formats, limits
+    ├── setup.md                detection, the three consent questions, registration
+    ├── codemode.md             the exec runtime, call patterns, verification
+    └── workflows.md            per-medium recipes and cross-app chains
 assets/                         banner and mark
 ```
 
@@ -263,7 +306,9 @@ Builds on the work of [`pmndrs/react-three-fiber`](https://github.com/pmndrs/rea
 [`nolly-studio/cult-ui`](https://github.com/nolly-studio/cult-ui), [Kokonut UI](https://kokonutui.com),
 [Skiper UI](https://skiperui.com), [`WatermelonCorp`](https://github.com/WatermelonCorp),
 [`VoltAgent/awesome-design-md`](https://github.com/VoltAgent/awesome-design-md),
-[`lucasmarkes/hairline`](https://github.com/lucasmarkes/hairline), and the
+[`lucasmarkes/hairline`](https://github.com/lucasmarkes/hairline), the
+[ArtCraft](https://getartcraft.com) Crafting Apps and
+[`tmustier/code-mode-mcp`](https://github.com/tmustier/code-mode-mcp), and the
 [skills](https://github.com/vercel-labs/skills) CLI. The design systems documented in
 [design-systems.md](skills/lucent/reference/design-systems.md) belong to their own authors; this
 repository documents how to choose and use them well, and documents their free tiers only.
