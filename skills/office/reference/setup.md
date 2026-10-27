@@ -89,7 +89,7 @@ mention that the current session will not see it until the MCP server restarts.
 > `~/.config/code-mode-mcp/mcp.json` — one entry, no new software. It will be reachable after the
 > agent restarts.
 
-Entry shape, mirroring how the suite is already configured on this machine:
+Entry shape, mirroring how the suite is configured:
 
 ```json
 {
@@ -109,14 +109,13 @@ Entry shape, mirroring how the suite is already configured on this machine:
 
 On macOS/Linux the command is the CLI on `PATH` (`"wordcraft-cli"`) with the same `mcp` argument.
 
-**Narrow the roots.** The `${USERPROFILE}` roots above are how this machine is configured; they
-grant the agent the entire home directory. When you write an entry yourself, point the roots at the
-project:
+**Narrow the roots.** The `${USERPROFILE}` roots above grant the agent the entire home directory.
+When you write an entry yourself, point the roots at the project:
 
 ```json
 "args": ["mcp",
-         "--automation-read-root", "D:/Apps/projects/veylith",
-         "--automation-write-root", "D:/Apps/projects/veylith"]
+         "--automation-read-root", "D:/work/project",
+         "--automation-write-root", "D:/work/project"]
 ```
 
 A root left out grants no access in that direction, which is the correct default. VectorCraft takes
@@ -183,9 +182,9 @@ code mode reads the upstream file for the apps. Never list code-mode as its own 
 A restart of the agent is required before the tool appears.
 
 **Harness note.** Codex and Pi have code mode built in; Claude Code does not, so this is how Claude
-Code gets it — verified on this machine: `code-mode` is a top-level stdio MCP server in
-`~/.claude.json`, and the Craft apps are its upstreams rather than separate MCP servers. If the
-harness already exposes an `exec` tool over a composed tool catalog, use it and skip this section.
+Code gets it — `code-mode` is a top-level stdio MCP server in `~/.claude.json`, and the Craft apps
+are its upstreams rather than separate MCP servers. If the harness already exposes an `exec` tool
+over a composed tool catalog, use it and skip this section.
 
 ## After setup
 

@@ -61,7 +61,7 @@ Two facts shape everything below:
 ### PdfCraft — PDF workbench
 
 - **Server** `pdfcraft` · **CLI** `pdfcraft-cli` · **file** `.pdf`
-- The largest surface in the suite: 179 tools on this machine
+- The largest surface in the suite: 179 tools
 - Document: `doc_open`, `doc_create`, `doc_inspect`, `doc_combine`, `doc_split`, `doc_compare`,
   `doc_save`, `doc_optimize`, `doc_reduce`, `doc_flatten`, `doc_protect`, `doc_watermark`,
   `doc_export_text`, `doc_export_images`, `doc_export_office`, `doc_import_data`, `doc_export_data`

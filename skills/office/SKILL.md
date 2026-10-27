@@ -19,9 +19,9 @@ Code mode is a single MCP server that takes one `exec` call containing JavaScrip
 upstream tools inside that call, and returns only what you asked for. One call can search three
 apps, build a deck, render a slide, and hand back the image. The model never holds 300 schemas.
 
-Some harnesses ship this natively. Claude Code does not, so on this machine it is installed as one
-stdio MCP server — `@tmustier/code-mode-mcp` — and every Craft app is registered as one of its
-upstreams instead of as a top-level MCP server of its own. That is the better arrangement, not a
+Some harnesses ship this natively. Claude Code does not, so it is installed as one stdio MCP
+server — `@tmustier/code-mode-mcp` — and every Craft app is registered as one of its upstreams
+instead of as a top-level MCP server of its own. That is the better arrangement, not a
 workaround: the suite costs one tool in context rather than several dozen, and the app schemas stay
 out of the way until a call needs them.
 
