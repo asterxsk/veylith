@@ -179,8 +179,22 @@ skill catalog; neither is required, and this workflow does not authorize install
 Treat the prototype as evidence of the chosen design, not as production-ready code. Replace
 shortcuts with the necessary data handling, accessibility, error states, and integration for
 the authorized scope. Preserve a UI-only or local-only boundary when that is the brief.
-Verify the real implementation against the selected revision and acceptance criteria, including
-appropriate functional checks and visual inspection when applicable.
+After implementation, defer time-consuming tests and test writing until the review and fix
+sequence is complete:
+
+1. Delegate a code review to a review subagent. Give it the implementation scope and acceptance
+   criteria, and ask it to report actionable issues with evidence.
+2. Once the review returns, delegate a fixer subagent to address the surfaced issues within the
+   authorized scope. Provide the review findings and implementation context. Inspect its changes
+   and resolve any remaining issues or disagreements before proceeding.
+3. Finally, write the tests appropriate to the completed change and run the required checks.
+   Verify the implementation against the selected revision and acceptance criteria, including
+   functional checks and visual inspection when applicable. Report any checks not performed.
+
+Use the harness's supported delegation mechanism when available and permitted. If delegation is
+unavailable or prohibited, perform the review and fixes directly, disclose the limitation, and
+then proceed to tests. Do not skip required verification or claim that a review guarantees all
+issues were found. This sequence does not replace the prototype preview checks above.
 
 Retire prototype switches and unused exploratory code from the shipped path. Preserve useful
 design evidence in the plan or an existing archive convention; do not automatically create
