@@ -172,6 +172,24 @@ choices necessary to carry it out. A request to pause or remain prototype-only c
 
 Update the plan with the selected design or brief, final adjustments, acceptance criteria,
 material assumptions, implementation steps, and the scope of the user's proceed instruction.
+
+### Local Git and worktrees
+
+Before changing implementation files, determine whether the project is a Git repository. If it
+is, use its local Git checkout and conventions; do not create or use a GitHub remote merely to
+organize the work. If it is not a Git repository, ask the user through the native question tool
+whether to initialize local Git, and wait for an affirmative answer before using branches or
+worktrees. If they decline, continue without worktrees and disclose that limitation.
+
+For a sufficiently large or risky implementation, split the authorized scope into at most one
+or two coherent, independently reviewable features. Delegate each selected feature to a
+subagent in its own local Git worktree, with a clear boundary, acceptance criteria, and
+instructions not to modify the main checkout. Do not force worktrees onto a small or tightly
+coupled change. Inspect each worktree's changes, resolve conflicts or disagreements, and merge
+the completed feature branches into the main repository locally before treating implementation
+as complete. Keep all branches, commits, reviews, fixes, merges, and verification local until
+the final merged tree is ready.
+
 Then implement using the repository's normal conventions. Use available, relevant execution
 skills: `lucent` can guide interface work and `poise` a finishing pass. Locate them through the
 skill catalog; neither is required, and this workflow does not authorize installing skills.
@@ -182,14 +200,21 @@ the authorized scope. Preserve a UI-only or local-only boundary when that is the
 After implementation, defer time-consuming tests and test writing until the review and fix
 sequence is complete:
 
-1. Delegate a code review to a review subagent. Give it the implementation scope and acceptance
+1. Delegate a code review to a review subagent for each worktree or feature boundary, or for the
+   main checkout when no worktree was warranted. Give it the implementation scope and acceptance
    criteria, and ask it to report actionable issues with evidence.
-2. Once the review returns, delegate a fixer subagent to address the surfaced issues within the
-   authorized scope. Provide the review findings and implementation context. Inspect its changes
-   and resolve any remaining issues or disagreements before proceeding.
-3. Finally, write the tests appropriate to the completed change and run the required checks.
-   Verify the implementation against the selected revision and acceptance criteria, including
-   functional checks and visual inspection when applicable. Report any checks not performed.
+2. Once the reviews return, delegate fixer subagents in the affected worktrees to address the
+   surfaced issues within the authorized scope. Provide the review findings and implementation
+   context. Inspect their changes and resolve any remaining issues or disagreements.
+3. Write the tests appropriate to the completed changes and run the required checks. Verify the
+   implementation against the selected revision and acceptance criteria, including functional
+   checks and visual inspection when applicable. Report any checks not performed.
+4. After reviews, fixes, tests, and verification pass, merge the finished local branches into
+   the main repository. Recheck the merged tree and do not ask about pushing until this local
+   merge is complete and the merged result is clean.
+5. Only then ask the user, through the native question tool, whether they want the full merged
+   tree pushed to GitHub. Never push, publish, or create a GitHub remote without that explicit
+   approval. If the user declines, leave the verified merged tree local.
 
 Use the harness's supported delegation mechanism when available and permitted. If delegation is
 unavailable or prohibited, perform the review and fixes directly, disclose the limitation, and
@@ -197,6 +222,8 @@ then proceed to tests. Do not skip required verification or claim that a review 
 issues were found. This sequence does not replace the prototype preview checks above.
 
 Retire prototype switches and unused exploratory code from the shipped path. Preserve useful
-design evidence in the plan or an existing archive convention; do not automatically create
-branches, commits, issues, deployments, or external projects. Report the implemented artifact
-and verification concisely, respecting the user's file-only delivery preference for documents.
+design evidence in the plan or an existing archive convention. Do not create issues, deployments,
+or external projects as part of this workflow. Local branches, worktrees, commits, reviews, and
+merges are expected when the local Git policy above calls for them. Report the implemented
+artifact and verification concisely, respecting the user's file-only delivery preference for
+documents.
