@@ -185,11 +185,16 @@ Lucent covers the interface. Everything else is a named handoff:
 | The brief is | The skill |
 |---|---|
 | An SVG illustration, isometric figure, or conceptual diagram | `hairline-create` |
-| A video, motion graphic, or slide deck | `hyperframes` |
+| A document, spreadsheet, presentation, PDF, photo edit, vector logo, or audio file | `office` |
+| A video you will edit, or a motion graphic with keyframes | `office` — ask first: `hyperframes` or FilmCraft/EffectCraft |
+| A rendered video, HTML-built motion graphic, or live slideshow | `hyperframes` |
 | Music, SFX, voiceover, stock media | `media-use` |
 | A chart, graph, or dashboard metric | `dataviz` |
 | Android or iOS native screens | `android-native-dev`, `mobile-android-design` |
 | A polish pass on a finished artifact | `poise` |
+
+[office](skills/office/SKILL.md) is the default for real office files and creative media, except
+FigCraft and DesignCraft — those are skipped in favour of Figma or Pen.dev.
 
 The protocol, spelled out in [handoffs.md](skills/lucent/reference/handoffs.md):
 
@@ -212,8 +217,8 @@ dividers, decorative uppercase monospace, clutter, and effects that compete with
 while preserving the brief, brand, and meaningful character.
 
 It works on its own, with no libraries and no dependencies. When paired with Lucent, Lucent
-settles the fundamentals and builds; poise makes the finishing pass and checks the composed
-result.
+settles the fundamentals and builds; once the design is done, Lucent runs poise as a subagent for
+the finishing pass and checks the composed result.
 
 ```bash
 npx skills add asterxsk/veylith --skill poise -g -y

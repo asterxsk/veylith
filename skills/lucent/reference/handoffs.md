@@ -47,10 +47,59 @@ installing the authoring skill is separate from adding `@lucasmarkes/hairline` t
 **Why not bundled:** this is an optional illustration style and authoring workflow. Lucent
 continues to own the website, handing over only the figure.
 
+## The ArtCraft suite (office)
+
+**`office`** — same repository. One app per artifact, all driven through one code-mode `exec`
+call. This is the route for the actual office file and for creative media that is not an
+interface.
+
+```bash
+npx skills add asterxsk/veylith --skill office -g -y
+```
+
+| The artifact | App |
+|---|---|
+| Document, letter, report, mail merge, citations | **WordCraft** |
+| Spreadsheet, formulas, charts, pivot tables | **GridCraft** |
+| Presentation deck | **DeckCraft** — see the deck question below |
+| PDF reading, combining, splitting, forms, redaction, OCR, signing | **PdfCraft** |
+| Photo editing: layers, masks, type, smart objects | **PhotoCraft**; raw files and photo library → **LightCraft** |
+| Logo or illustration as a real vector file | **VectorCraft** |
+| Audio recording, editing, mixing | **SoundCraft** |
+| Video editing, sequences, colour, export | **FilmCraft** |
+| Motion graphics, effects, keyframes, expressions | **EffectCraft** |
+| AI image and video generation | **ArtCraft** |
+
+**Excluded on purpose: FigCraft and DesignCraft.** Neither is used much here, and Figma or
+Pen.dev do the same job better. Do not route an interface or page-layout brief to them.
+
+**Ask before choosing the video tool.** When the brief is video — editing existing footage,
+building a motion graphic, or creating a video from scratch — ask once: **`hyperframes`** for
+HTML/CSS/JS rendered to MP4, or **FilmCraft/EffectCraft** for timeline editing and keyframes.
+The answer changes the whole workflow, so it is the user's call, not an inference from file types.
+
+**Ask before choosing the deck tool.** **DeckCraft** produces an editable `.pptx`. **`slideshow`**
+(HyperFrames) produces a live, branching, or rendered deck. A deck the user will open in
+PowerPoint is DeckCraft; a deck that presents itself is HyperFrames.
+
+**Illustrations split by form.** **VectorCraft** when the deliverable is a vector file — a logo,
+an `.ai`/`.svg` asset, something the user will keep editing. **`hairline-create`** when the job
+is a website figure in that isometric line style. Lucent still owns placement, sizing, and the
+surrounding layout.
+
+**What Lucent still contributes:** the fundamentals and the label rule apply to a slide, a
+document page, a poster, and a rendered frame exactly as they do to a page. **What it hands
+over:** the artifact contract — native format, command API, export, and render verification.
+That lives in `office`'s own loop; do not infer it from the web rules.
+
+**Why not bundled:** the suite is thirteen native apps and an MCP server with system
+dependencies. It is irrelevant to interface work and maintains its own skill.
+
 ## Video, motion graphics, and decks
 
 **`hyperframes`** — HTML/CSS/JS → deterministic MP4. It is the router for the whole video
-toolchain, and it owns its own authoring detail.
+toolchain, and it owns its own authoring detail. When the user picked HyperFrames over
+FilmCraft/EffectCraft (or the brief is code-authored motion), this is the skill.
 
 ```bash
 npx skills add heygen-com/hyperframes --skill hyperframes -g -y
@@ -109,6 +158,33 @@ Lucent has no native-mobile effect layer. Compose motion, SwiftUI animation, and
 are different tools; Lucent's only contribution is shared timing vocabulary and the design
 fundamentals.
 
+## Finishing pass with poise
+
+**`poise`** — same repository. When the design is done and the audit has passed, run `poise`
+**as a subagent** before reporting the artifact finished. It is the final composure pass:
+hierarchy, spacing, type, visual explanation, and the amount of competing detail.
+
+```bash
+npx skills add asterxsk/veylith --skill poise -g -y
+```
+
+Delegate it explicitly. The subagent needs, in the brief:
+
+- **The artifact** — source path or preview URL, plus how to render it at real size.
+- **The direction** — the three dials, mode, design system, and the feeling the brief asked for.
+- **The scope** — a cleanup pass on the composed result, not a new direction, and not a rewrite
+  of settled layout or copy.
+- **The output** — the concrete edits plus a short list of what it changed and what it left alone.
+
+Then review its changes, apply what holds the direction, and stop. One pass. Do not spawn a
+second poise run to chase the first, and do not inline the pass in Lucent's own context — the
+separation is what keeps the finishing pass from re-litigating decisions the audit already
+settled.
+
+**Why not bundled:** it is a separate discipline with its own medium references. It installs
+alone, works alone, and Lucent still works without it; if it is missing, say so rather than
+improvising a substitute.
+
 ## The optional design companions
 
 Lucent is self-contained, and these are **not** required. Each is a genuine alternative or
@@ -116,7 +192,7 @@ addition for a specific case, and each installs on its own.
 
 | Skill | Install | Use it when | Why Lucent does not bundle it |
 |---|---|---|---|
-| **poise** | `npx skills add asterxsk/veylith --skill poise -g -y` | A cleanup pass on any finished artifact — web, PDF, poster, deck, video | Same repository, genuinely complementary. Separate install so each stands alone |
+| **poise** | `npx skills add asterxsk/veylith --skill poise -g -y` | The finishing pass after any design is done — run it as a subagent [above](#finishing-pass-with-poise) | Same repository, genuinely complementary. Separate install so each stands alone |
 | **impeccable** | `npx skills add pbakaus/impeccable --skill impeccable -g -y` | The user wants a deeper art direction or a critique mode | Lucent's direction is deliberately light; a real art director is a different job |
 | **design-taste-frontend** | `npx skills add Leonxlnx/taste-skill --skill design-taste-frontend -g -y` | Greenfield marketing page or portfolio, no committed world | Lucent carries the three dials and the refusals that matter; the rest is its arena |
 | **web-design-guidelines** | `npx skills add vercel-labs/agent-skills --skill web-design-guidelines -g -y` | A formal interface audit of an existing codebase | Lucent's [audit.md](audit.md) carries the checklist; this fetches the current upstream version |
@@ -140,8 +216,8 @@ them:
 
 - iOS Human Interface Guidelines specifics
 - Native Android effect and haptics work
-- Audio production or mastering
+- Audio mastering beyond what SoundCraft's mix and effects cover
 - Print production beyond layout — bleeds, spot colours, imposed proofs
-- Any video work before `hyperframes` is installed
+- Video work when neither `office` (FilmCraft/EffectCraft) nor `hyperframes` is installed
 
 An agent that says "this is outside what I have" is more useful than one that improvises.

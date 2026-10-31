@@ -16,10 +16,10 @@ frames rendered once. **A technology moving between mediums does not carry its c
 | **Video or motion graphic** | HTML → MP4 | — | `hyperframes` — see [handoffs.md](handoffs.md) |
 | **Slide deck** | Presentation | — | `slideshow` (HyperFrames) — see [handoffs.md](handoffs.md) |
 | **Chart, graph, dashboard metric** | Any | — | `dataviz` — see [handoffs.md](handoffs.md) |
-| **PDF, poster, print** | Vector or raster | [fundamentals.md](fundamentals.md), [labels.md](labels.md) | `poise` for the cleanup pass |
+| **PDF, poster, print** | Vector or raster | [fundamentals.md](fundamentals.md), [labels.md](labels.md) | `poise` for the cleanup pass, as a subagent |
 | **Android app screen** | Jetpack Compose, Material 3 | — | `android-native-dev`, `mobile-android-design` |
 | **iOS app screen** | SwiftUI, HIG | — | No skill assumed. Say the platform guidance is not covered rather than improvising |
-| **A polish pass on a finished artifact** | Any | — | `poise` (this repository) |
+| **A polish pass after the design is done** | Any | — | `poise` (this repository) — delegate it to a subagent, see [handoffs.md](handoffs.md#finishing-pass-with-poise) |
 
 ## Stand down when out of scope
 

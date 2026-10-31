@@ -125,8 +125,8 @@ several of these ship free as copy-paste components. Check
 [reference/design-galleries.md](reference/design-galleries.md) when the section's shape is not
 yet settled.
 
-**Nothing beyond this is bundled.** Video, decks, print, and native mobile are handoffs — see
-**Step 6**.
+**Nothing beyond this is bundled.** Documents, decks, video, print, and native mobile are
+handoffs — see **Step 6**.
 
 ## The six web rules
 
@@ -156,6 +156,23 @@ Verify in the real artifact at real size — a rendered page at desktop and mobi
 screenshot of a hero. Fix everything the pass finds in one round; do not loop until the diff is
 empty. Then report what was built, what it cost, how it degrades, and what the user must supply.
 
+### Finishing pass — run `poise`
+
+Design is not done when the audit passes. **When the interface is built, run `poise` as a
+subagent for the finishing pass.** Give it the artifact path or preview URL, the brief's desired
+feeling, the direction dials, and the design system in use; ask it for a cleanup pass and a
+report of what changed and what it deliberately left alone.
+
+- **Delegate, do not inline.** Spawn a subagent with `poise` and the artifact. A second full
+  design context in this one tends to re-litigate settled direction instead of composing it.
+- **One pass, then apply.** Review its changes, keep what holds the direction, and do not loop
+  polishing until the diff is empty.
+- **It is optional.** `poise` installs separately — see
+  [reference/handoffs.md](reference/handoffs.md#finishing-pass-with-poise). If it is not
+  available, say so, finish the audit, and do not improvise the missing discipline.
+
+The report names whether the poise pass ran and what it changed.
+
 ## Step 6 — Hand off
 
 Lucent covers the interface. When the brief is outside it, say so and name the skill that owns
@@ -164,11 +181,17 @@ it. Full protocol and command lines in [reference/handoffs.md](reference/handoff
 | The brief is | Ask about |
 |---|---|
 | An SVG illustration, isometric figure, or conceptual diagram | `hairline-create` — [reference/hairline.md](reference/hairline.md) |
-| A video, motion graphic, or slide deck | `hyperframes` (decks: `slideshow`) |
+| A document, spreadsheet, presentation, PDF, photo edit, vector logo, or audio file | `office` — WordCraft, GridCraft, DeckCraft, PdfCraft, PhotoCraft, VectorCraft, SoundCraft |
+| A video you will edit, or a motion graphic with keyframes | `office` — FilmCraft, EffectCraft — **ask first: `hyperframes` or FilmCraft/EffectCraft?** |
+| A rendered video, HTML-built motion graphic, or live slideshow | `hyperframes` (decks: `slideshow`) |
 | Music, SFX, voiceover, stock media | `media-use` |
 | A chart, graph, dashboard metric, or data visualisation | `dataviz` |
 | Android or iOS native screens | `android-native-dev`, `mobile-android-design` |
-| A polish pass on any finished artifact | `poise` (this repo) |
+| A polish pass on any finished artifact, including yours | `poise` (this repo) — run it as a subagent after the design is done |
+
+The **office** suite is the default for real office files and creative media, except **FigCraft**
+and **DesignCraft** — skipped in favour of Figma or Pen.dev. Full routing in
+[reference/handoffs.md](reference/handoffs.md#the-artcraft-suite-office).
 
 The protocol, in one line: **detect, ask once with the exact command, install only on approval,
 install one skill not a pack, and say if a restart is needed.** Never install silently.
@@ -195,6 +218,7 @@ The rules that make this skill the opposite of a bundle.
 
 State what was built, where, and what it cost. Name the design system and why it is the one
 already present or the one chosen. Name each effect's job in the same sentence as the effect.
-Say how it degrades and what the user must supply. If the surface carries labels, confirm they
-follow [reference/labels.md](reference/labels.md) — serif italic, sentence case, untracked, not
-tracked caps.
+Say how it degrades and what the user must supply. Say whether the `poise` finishing pass ran,
+what it changed, and why anything it flagged was kept. If the surface carries labels, confirm
+they follow [reference/labels.md](reference/labels.md) — serif italic, sentence case, untracked,
+not tracked caps.
