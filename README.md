@@ -44,17 +44,17 @@ Built on the [skills](https://skills.sh) CLI from
 [vercel-labs/skills](https://github.com/vercel-labs/skills). **Node 22.20+ required.**
 
 ```bash
-npx skills add asterxsk/veylith --skill blueprint -g -y
-npx skills add asterxsk/veylith --skill handoff -g -y
-npx skills add asterxsk/veylith --skill lucent -g -y
-npx skills add asterxsk/veylith --skill office -g -y
-npx skills add asterxsk/veylith --skill poise  -g -y
+npx skills add asterxsk/veylith --skill blueprint -g
+npx skills add asterxsk/veylith --skill handoff -g
+npx skills add asterxsk/veylith --skill lucent -g
+npx skills add asterxsk/veylith --skill office -g
+npx skills add asterxsk/veylith --skill poise -g
 ```
 
 Or install everything in the collection:
 
 ```bash
-npx skills add asterxsk/veylith -g -y
+npx skills add asterxsk/veylith -g
 ```
 
 Drop `-g` to install into the current project instead of your user directory, and `-a
@@ -81,7 +81,7 @@ Plans and long documents stay in markdown files. Blueprint works on its own; Luc
 the interface implementation and poise can make the finishing pass when available.
 
 ```bash
-npx skills add asterxsk/veylith --skill blueprint -g -y
+npx skills add asterxsk/veylith --skill blueprint -g
 ```
 
 ---
@@ -97,7 +97,7 @@ Invoke `$handoff`, optionally with the next session's focus. It returns only the
 path; its Codex invocation policy remains explicit-only.
 
 ```bash
-npx skills add asterxsk/veylith --skill handoff -g -y
+npx skills add asterxsk/veylith --skill handoff -g
 ```
 
 ---
@@ -221,7 +221,7 @@ settles the fundamentals and builds; once the design is done, Lucent runs poise 
 the finishing pass and checks the composed result.
 
 ```bash
-npx skills add asterxsk/veylith --skill poise -g -y
+npx skills add asterxsk/veylith --skill poise -g
 ```
 
 ---
@@ -254,7 +254,7 @@ pixels. Render the result before calling it finished. Hand judgement work — ho
 feel, whether the chart is honest — to poise, dataviz or lucent.
 
 ```bash
-npx skills add asterxsk/veylith --skill office -g -y
+npx skills add asterxsk/veylith --skill office -g
 ```
 
 ---
