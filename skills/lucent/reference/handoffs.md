@@ -13,7 +13,7 @@ Nothing in this repository installs another skill. This is the protocol that rep
    install "to be helpful."
 3. **On approval**, install that one skill:
    ```bash
-   npx skills add <owner>/<repo> --skill <name> -g -y
+   npx skills add <owner>/<repo> --skill <name> -g
    ```
    One skill, not a pack. Several of these repos publish a dozen skills; naming `--skill` is what
    keeps a scripted run off the interactive picker and off the whole catalog.
@@ -36,7 +36,7 @@ page needs; create a new figure when the metaphor is specific to the brief.
 Use an available skill directly. If it is missing and needed, follow the protocol above with:
 
 ```bash
-npx skills add lucasmarkes/hairline --skill hairline-create -g -y
+npx skills add lucasmarkes/hairline --skill hairline-create -g
 ```
 
 The [upstream skill](https://github.com/lucasmarkes/hairline/blob/main/skills/hairline-create/SKILL.md)
@@ -54,7 +54,7 @@ call. This is the route for the actual office file and for creative media that i
 interface.
 
 ```bash
-npx skills add asterxsk/veylith --skill office -g -y
+npx skills add asterxsk/veylith --skill office -g
 ```
 
 | The artifact | App |
@@ -102,7 +102,7 @@ toolchain, and it owns its own authoring detail. When the user picked HyperFrame
 FilmCraft/EffectCraft (or the brief is code-authored motion), this is the skill.
 
 ```bash
-npx skills add heygen-com/hyperframes --skill hyperframes -g -y
+npx skills add heygen-com/hyperframes --skill hyperframes -g
 ```
 
 Prerequisites are hard requirements, not suggestions: **Node ≥ 22** and **FFmpeg on `PATH`**. A
@@ -165,7 +165,7 @@ fundamentals.
 hierarchy, spacing, type, visual explanation, and the amount of competing detail.
 
 ```bash
-npx skills add asterxsk/veylith --skill poise -g -y
+npx skills add asterxsk/veylith --skill poise -g
 ```
 
 Delegate it explicitly. The subagent needs, in the brief:
@@ -192,10 +192,10 @@ addition for a specific case, and each installs on its own.
 
 | Skill | Install | Use it when | Why Lucent does not bundle it |
 |---|---|---|---|
-| **poise** | `npx skills add asterxsk/veylith --skill poise -g -y` | The finishing pass after any design is done — run it as a subagent [above](#finishing-pass-with-poise) | Same repository, genuinely complementary. Separate install so each stands alone |
-| **impeccable** | `npx skills add pbakaus/impeccable --skill impeccable -g -y` | The user wants a deeper art direction or a critique mode | Lucent's direction is deliberately light; a real art director is a different job |
-| **design-taste-frontend** | `npx skills add Leonxlnx/taste-skill --skill design-taste-frontend -g -y` | Greenfield marketing page or portfolio, no committed world | Lucent carries the three dials and the refusals that matter; the rest is its arena |
-| **web-design-guidelines** | `npx skills add vercel-labs/agent-skills --skill web-design-guidelines -g -y` | A formal interface audit of an existing codebase | Lucent's [audit.md](audit.md) carries the checklist; this fetches the current upstream version |
+| **poise** | `npx skills add asterxsk/veylith --skill poise -g` | The finishing pass after any design is done — run it as a subagent [above](#finishing-pass-with-poise) | Same repository, genuinely complementary. Separate install so each stands alone |
+| **impeccable** | `npx skills add pbakaus/impeccable --skill impeccable -g` | The user wants a deeper art direction or a critique mode | Lucent's direction is deliberately light; a real art director is a different job |
+| **design-taste-frontend** | `npx skills add Leonxlnx/taste-skill --skill design-taste-frontend -g` | Greenfield marketing page or portfolio, no committed world | Lucent carries the three dials and the refusals that matter; the rest is its arena |
+| **web-design-guidelines** | `npx skills add vercel-labs/agent-skills --skill web-design-guidelines -g` | A formal interface audit of an existing codebase | Lucent's [audit.md](audit.md) carries the checklist; this fetches the current upstream version |
 
 When one is installed and relevant, read it — do not paraphrase it from memory. When it is not,
 [design-references.md](design-references.md) describes what each covers.
