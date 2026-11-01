@@ -1,0 +1,4 @@
+interface:
+  display_name: "Autopilot"
+  short_description: "Ask everything up front, then finish alone and log every decision"
+  default_prompt: "Use $autopilot to collect every blocking question now, then work unattended: decide, implement, verify, and record every decision and assumption in decisions.md for me to review when I return."

@@ -8,7 +8,7 @@ stretch them over work they were never meant for.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-18181B)](LICENSE)
 [![Install: npx skills](https://img.shields.io/badge/install-npx%20skills-18181B)](https://skills.sh)
-[![Skills: 5](https://img.shields.io/badge/skills-5-18181B)](skills)
+[![Skills: 7](https://img.shields.io/badge/skills-7-18181B)](skills)
 
 The ideas that hold across the collection:
 
@@ -28,7 +28,9 @@ No installer, no bundle, no companion skill that arrives uninvited.
 
 | Skill | Discipline | What it does |
 |---|---|---|
+| **[autopilot](skills/autopilot/SKILL.md)** | Autonomy | Asks everything that could block the work in one pass, then finishes alone and logs every decision, assumption and blocker in `decisions.md` for the user to review on return. |
 | **[blueprint](skills/blueprint/SKILL.md)** | Intent and agreement | Uses native questions to establish the brief, asks how many prototypes to explore, refines the chosen design, and implements when the user says to proceed. |
+| **[decision-review](skills/decision-review/SKILL.md)** | Sign-off | Checks every decision and assumption in `decisions.md` against what was actually built, then asks the user one at a time to keep or change it, applies the answers, and updates the record. |
 | **[handoff](skills/handoff/SKILL.md)** | Continuity | Replaces `HANDOFF.md` in the current directory with concise user-message summaries, completed work, every changed file, verification, and next steps. |
 | **[lucent](skills/lucent/SKILL.md)** | Clarity and precision | Turns a vague requirement into a polished, legible interface — direction, design system, fundamentals, any effect that earns its place, and the audit. |
 | **[poise](skills/poise/SKILL.md)** | Composure and control | Makes output look confident without trying to look sophisticated — removes generic AI-looking habits and settles hierarchy, spacing, type, and motion across web, print, decks, and video. |
@@ -44,7 +46,9 @@ Built on the [skills](https://skills.sh) CLI from
 [vercel-labs/skills](https://github.com/vercel-labs/skills). **Node 22.20+ required.**
 
 ```bash
+npx skills add asterxsk/veylith --skill autopilot -g
 npx skills add asterxsk/veylith --skill blueprint -g
+npx skills add asterxsk/veylith --skill decision-review -g
 npx skills add asterxsk/veylith --skill handoff -g
 npx skills add asterxsk/veylith --skill lucent -g
 npx skills add asterxsk/veylith --skill office -g
@@ -65,6 +69,51 @@ A skill is just a folder with a `SKILL.md` in it, so cloning works too:
 ```bash
 git clone --depth 1 https://github.com/asterxsk/veylith /tmp/veylith
 cp -r /tmp/veylith/skills/lucent ~/.claude/skills/lucent
+```
+
+---
+
+## Autopilot
+
+[autopilot](skills/autopilot/SKILL.md) runs a task while the user is not there. It collects every
+question that could block the work in a single pass through the native question tool, tells the
+user once that they can go, and then works unattended: planning, implementing, reviewing and
+verifying without asking for anything else.
+
+Every choice made in their absence is appended to `decisions.md` in the working directory as it
+happens — what was decided, why, which alternatives were rejected, how reversible it is, what
+happens if it is wrong. Assumptions and blockers are logged separately. When the work is finished
+the file is closed out and summarised in chat, so the record is the first thing the user reads
+back.
+
+The rule that keeps it safe unattended: nothing irreversible and nothing outward-facing is done
+alone. No force-pushes, no deletions it cannot undo, no pushes, publishes, deploys, installs, or
+spending. Those become blocker entries with the exact action that would resume them, and the work
+stops at the last clean, running state.
+
+```bash
+npx skills add asterxsk/veylith --skill autopilot -g
+```
+
+---
+
+## Decision Review
+
+[decision-review](skills/decision-review/SKILL.md) is the counterpart to Autopilot: the pass the
+user makes when they come back. It reads `decisions.md`, checks each entry against the actual
+work — applied, drifted, never implemented, or unverifiable — and adds anything the work changed
+that nobody recorded. Then it asks, one entry at a time through the native question tool: keep it,
+change it, or revert it where a clean undo exists.
+
+Entries are ordered by consequence, so the hard-to-reverse and unrecorded ones come first. The
+approved changes are implemented and verified, the review section is appended to `decisions.md`
+with the verdict on each entry, and the chat summary says what changed and what is still open.
+
+When the file holds no decisions and no assumptions, the skill says so in one line and stops.
+There is nothing to review, and no review is invented to fill the silence.
+
+```bash
+npx skills add asterxsk/veylith --skill decision-review -g
 ```
 
 ---
@@ -262,8 +311,14 @@ npx skills add asterxsk/veylith --skill office -g
 ## Repository layout
 
 ```
+skills/autopilot/
+├── SKILL.md                    preflight questions, unattended work, decisions.md
+└── agents/openai.yaml          display name and default prompt
 skills/blueprint/
 ├── SKILL.md                    native questions, discovery, prototypes, and implementation
+└── agents/openai.yaml          display name and default prompt
+skills/decision-review/
+├── SKILL.md                    verify decisions.md, ask keep or change, apply, update
 └── agents/openai.yaml          display name and default prompt
 skills/handoff/
 ├── SKILL.md                    concise session handoff, replaced on each invocation

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Decision Review"
+  short_description: "Walk back through decisions.md and keep or change each one"
+  default_prompt: "Use $decision-review to compare every decision and assumption in decisions.md against what was actually built, then ask me one at a time whether to keep or change it, apply my answers, and update the record."
