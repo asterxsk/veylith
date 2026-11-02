@@ -57,6 +57,14 @@ large one:
 A hover state, a fade, or a focus ring is a CSS transition. A page already committed to GSAP
 with a team that knows it should not gain a second mental model.
 
+### Before hand-writing a small interaction
+
+If the whole requirement is one control getting its timing right — a label swap that must not
+resize the button, a hold-to-confirm, a delayed tooltip, a segmented control, a copy-to-tick —
+check [interior.dev](https://www.interior.dev/docs) first. 54 MIT micro-interactions built on
+Motion, one file each, organised by what the user is in the middle of rather than by widget. The
+inventory and the install command are in [ui-registries.md](ui-registries.md#interiordev).
+
 ## Lenis
 
 [darkroomengineering/lenis](https://github.com/darkroomengineering/lenis) — interpolates the

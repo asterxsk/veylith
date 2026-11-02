@@ -1,11 +1,11 @@
 # UI registries
 
-Four shadcn registries that ship copy-paste versions of the surface treatments and motion
+Five shadcn registries that ship copy-paste versions of the surface treatments and motion
 moments in this skill. They are the "do not hand-roll it" escape hatch — and they arrive with
 their own animation loop, dependencies, and opinion about reduced motion, none of which satisfy
 the contract until you check.
 
-All four are **shadcn registry** libraries: they install into a project that already has shadcn
+All five are **shadcn registry** libraries: they install into a project that already has shadcn
 configured (`components.json`, Tailwind, a `cn()` helper) by writing source files into the
 project. The component is yours to edit afterwards — which is the point, and also why nothing is
 versioned for you.
@@ -16,6 +16,34 @@ versioned for you.
 | [Kokonut UI](https://kokonutui.com) | Small self-contained animated details rather than whole compositions: `particle-button`, `shimmer-text`, `liquid-glass-card`, `ai-prompt` | Free; Kokonut Pro paid and excluded | `npx shadcn@latest add @kokonutui/<name>` |
 | [Skiper UI](https://skiper-ui.com) | One unusual interaction: dynamic island, token swap, View-Transition theme toggle, scroll marquee | Free tier **requires attribution**; Pro paid and excluded | `npx shadcn add @skiper-ui/skiperN` |
 | [Watermelon UI](https://ui.watermelon.sh) | Breadth — the ordinary product surface around the one effect: 260+ components, blocks, dashboards | MIT, free | `npx shadcn@latest add "https://registry.watermelon.sh/r/<name>.json"` |
+| [interior.dev](https://www.interior.dev) | The small moments around an action: button label swaps, hold-to-confirm, tooltip delay, segmented control, slider detents, copy and like feedback. 54 components, demoed in motion | MIT, free, no attribution | `npx shadcn@latest add https://www.interior.dev/r/<name>.json` |
+
+## interior.dev
+
+The fifth registry is narrower than the rest and worth naming separately: 54 React
+micro-interactions, React + Tailwind + Motion + TypeScript, no tier, no licence key, no
+attribution. Docs at `interior.dev/docs`, one page per component at `interior.dev/docs/<name>`,
+and the source it installs is exactly the page's source.
+
+It is built against three specific failures, which are also good review questions for anything
+animated in this skill:
+
+1. **The button jumps.** A label swaps from Save to Saving and the button resizes, so the row
+   moves under the cursor. Every reachable state reserves its width first.
+2. **The animation cannot be interrupted.** A second click mid-transition restarts or queues.
+   A spring resumes from wherever the element currently is.
+3. **Motion is the only channel.** With reduced motion on, most libraries either animate anyway
+   or hide the element. Here the information arrives either way; the trip is optional.
+
+It groups components by what the user is in the middle of rather than by widget: action
+feedback, rejection, async waiting, notification, something arriving on top, navigation, scroll, a
+changed number, gesture, and content arrival. The dependency list on a registry item is just
+`motion`, so it shares the animation engine with Cult and Kokonut and adds no second one.
+
+It is the right first stop when the effect is *an ordinary control getting its timing right* —
+not when it is a shader, a scene, or a whole composition. Verify `prefers-reduced-motion` per
+component anyway: the shipped source does read `useReducedMotion()`, but the contract is checked,
+never assumed.
 
 ## Component map
 
@@ -28,6 +56,10 @@ versioned for you.
 | Particles, shimmer, small details | Kokonut `particle-button`, `shimmer-text`, `ai-prompt` | The detail is a piece of a composition, not the composition |
 | Scroll-reactive marquee or section | Skiper scroll components; Motion directly | Nothing else on the page owns scroll |
 | Chrome and shell | Cult `dock`, `floating-panel`, `dynamic-island`, `side-panel` | The project's own design system already has these |
+| Button that changes label or icon | interior `loading-button`, `copy-button` | The state reserves its width and the swap is interruptible by hand |
+| Destructive action with a pause | interior `hold-to-confirm` | The confirm is a plain two-step button, not a held press |
+| Delayed tooltip, slider, segmented control | interior `tooltip-group`, `slider-detents`, `segmented-control` | One native element with the platform's own timing is enough |
+| Playful feedback on a like, tap, or copy | interior `like-burst`, `copy-button` | The feedback is text or a state change, not a flourish |
 
 ## Paid tiers are out of scope
 
@@ -45,8 +77,8 @@ Document free components only, and never trip a paywall.
 ## Stack fit
 
 Cult and Kokonut are both React + Tailwind + **Motion**, so a project using both ships one
-animation engine. Skiper leans on Motion *and* GSAP and is heavier. Watermelon is React 19 /
-Tailwind v4 / Radix / Framer Motion.
+animation engine. interior.dev is the same stack and the same single dependency. Skiper leans on
+Motion *and* GSAP and is heavier. Watermelon is React 19 / Tailwind v4 / Radix / Framer Motion.
 
 Match what the project already has: `motion` and `framer-motion` are the same project under two
 package names, and installing both ships it twice. Components targeting Tailwind v3 will need
@@ -82,6 +114,7 @@ A registry component is third-party source. Verify it rather than assuming:
 
 - An effect Cult already ships — **Cult**, do not hand-build it.
 - One animated detail inside a larger composition — **Kokonut**. Same stack, so they mix.
+- An ordinary control whose timing is the whole point — **interior.dev**. Same stack again.
 - One distinctive interaction the brief names — **Skiper**, and check whether it is free.
 - A whole product surface that needs to look finished around the effect — **Watermelon**.
 - **Build it yourself** when the effect must react to app state, the project is not React with

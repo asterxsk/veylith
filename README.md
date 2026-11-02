@@ -216,7 +216,8 @@ Three technologies, each written as a rule sheet rather than a tutorial.
 | Glass, liquid marks, animated gradient backgrounds | [surfaces.md](skills/lucent/reference/surfaces.md) |
 
 Before building any of them, check [ui-registries.md](skills/lucent/reference/ui-registries.md) —
-Cult UI, Kokonut UI, Skiper UI, and Watermelon UI ship free copy-paste versions of all three.
+Cult UI, Kokonut UI, Skiper UI, Watermelon UI, and interior.dev ship free copy-paste versions of
+all three.
 When the *section* is undecided rather than the effect, [design-galleries.md](skills/lucent/reference/design-galleries.md)
 collects real shipped hero, navbar, CTA, footer, and pricing sections to calibrate against.
 
@@ -340,7 +341,7 @@ skills/lucent/
     ├── handoffs.md             what to install, when, and how to ask
     ├── design-references.md     the DESIGN.md catalogue and how the layers sequence
     ├── design-galleries.md     hero, pricing, navbar, CTA, and footer galleries
-    └── ui-registries.md        Cult UI, Kokonut UI, Skiper UI, Watermelon UI
+    └── ui-registries.md        Cult UI, Kokonut UI, Skiper UI, Watermelon UI, interior.dev
 skills/poise/
 ├── SKILL.md                    standalone cleanup and pairing with Lucent
 ├── agents/openai.yaml          display name and default prompt for non-Claude agents

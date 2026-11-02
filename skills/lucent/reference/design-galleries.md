@@ -102,7 +102,7 @@ Mirroring design-references.md's own list, with the galleries supplying the sect
 2. **Section shape** — before the effect, settle what the section is. Hero from Supahero, navbar pattern from Navbar Gallery, CTA form from CTA.gallery, footer archetype from Footer, pricing layout from PricingPages.design. This decides the container.
 3. **Substrate** — [design-systems.md](design-systems.md). The gallery shows the shape; the system supplies the components to build it from.
 4. **Effect** — pick one from [usage-map.md](usage-map.md), read its reference, build it against the contract. The gallery never chooses the effect; it only says what the section should contain.
-5. **Pre-built** — [ui-registries.md](ui-registries.md), when the effect the section needs is one Cult UI, Kokonut UI, Skiper UI, or Watermelon UI already ships as a free component. Free tiers only.
+5. **Pre-built** — [ui-registries.md](ui-registries.md), when the effect the section needs is one Cult UI, Kokonut UI, Skiper UI, Watermelon UI, or interior.dev already ships as a free component. Free tiers only.
 6. **Audit** — [audit.md](audit.md), plus the effect's own rules for GPU and scroll. One batched pass, then stop.
 
 ## Honesty rule
