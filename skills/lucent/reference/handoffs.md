@@ -47,6 +47,26 @@ installing the authoring skill is separate from adding `@lucasmarkes/hairline` t
 **Why not bundled:** this is an optional illustration style and authoring workflow. Lucent
 continues to own the website, handing over only the figure.
 
+## Faux product UI (stageshow)
+
+**`stageshow`** — a React kit and set of gold examples for miniature product UI: windows, phones,
+dashboards, terminals, bento grids, and cursor walkthroughs, as a still or a short animation.
+Lucent owns the framing, restraint, type, and motion decisions; stageshow supplies the parts that
+are hard to hand-build and the examples to start from. Read
+[faux-ui.md](faux-ui.md) first — those rules apply with or without the kit.
+
+```bash
+npx skills add benjitaylor/skills --skill stageshow -g
+```
+
+React, react-dom and lucide-react; MIT licensed (Benji Taylor). Copy `kit/` into the project and
+import from `kit/index.ts`; copy the closest example rather than rewriting it from a glance. Its
+`scripts/film.mjs --gate` catches framing and motion faults a still cannot show.
+
+**Why not bundled:** it is a component library plus eighty examples, and most surfaces never need
+it. A hand-built mockup under the [faux-ui rules](faux-ui.md) is a complete result; the kit is for
+when the brief wants a polished, animated product shot.
+
 ## The ArtCraft suite (office)
 
 **`office`** — same repository. One app per artifact, all driven through one code-mode `exec`

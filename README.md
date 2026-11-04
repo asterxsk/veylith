@@ -228,6 +228,11 @@ Lucent can use **Hairline**: reuse a suitable premade figure or create one with 
 The [Hairline reference](skills/lucent/reference/hairline.md) covers static SVG output and
 optional interaction. A still SVG needs no Hairline runtime; the skill stays an optional handoff.
 
+When the picture is of a product — an app in a hero, a feature card, a bento tile, or a short demo
+with a cursor — the [faux UI reference](skills/lucent/reference/faux-ui.md) covers how to frame,
+crop, restrain, and animate it so it reads as a product shot rather than a screenshot in a box.
+`stageshow` supplies the React kit and gold examples; the rules work without it.
+
 ### What it hands off
 
 Lucent covers the interface. Everything else is a named handoff:
@@ -235,6 +240,7 @@ Lucent covers the interface. Everything else is a named handoff:
 | The brief is | The skill |
 |---|---|
 | An SVG illustration, isometric figure, or conceptual diagram | `hairline-create` |
+| A product mockup or animated app demo | [faux-ui.md](skills/lucent/reference/faux-ui.md) — by hand, or `stageshow` for the kit |
 | A document, spreadsheet, presentation, PDF, photo edit, vector logo, or audio file | `office` |
 | A video you will edit, or a motion graphic with keyframes | `office` — ask first: `hyperframes` or FilmCraft/EffectCraft |
 | A rendered video, HTML-built motion graphic, or live slideshow | `hyperframes` |
@@ -332,6 +338,7 @@ skills/lucent/
     ├── design-systems.md       the seven core systems plus the named brands
     ├── fundamentals.md         hierarchy, spacing, type, colour, states, a11y
     ├── hairline.md             premade figures, custom illustrations, static SVG output
+    ├── faux-ui.md              product shots and demo animation: framing, restraint, motion
     ├── usage-map.md            where each effect belongs, and where it does not
     ├── motion.md               Motion and Lenis, and the scroll-ownership rule
     ├── three-d.md              react-three-fiber and Spline
@@ -367,7 +374,8 @@ Builds on the work of [`pmndrs/react-three-fiber`](https://github.com/pmndrs/rea
 [`nolly-studio/cult-ui`](https://github.com/nolly-studio/cult-ui), [Kokonut UI](https://kokonutui.com),
 [Skiper UI](https://skiperui.com), [`WatermelonCorp`](https://github.com/WatermelonCorp),
 [`VoltAgent/awesome-design-md`](https://github.com/VoltAgent/awesome-design-md),
-[`lucasmarkes/hairline`](https://github.com/lucasmarkes/hairline), the
+[`lucasmarkes/hairline`](https://github.com/lucasmarkes/hairline),
+[`benjitaylor/skills`](https://github.com/benjitaylor/skills) (stageshow), the
 [ArtCraft](https://getartcraft.com) Crafting Apps and
 [`tmustier/code-mode-mcp`](https://github.com/tmustier/code-mode-mcp), and the
 [skills](https://github.com/vercel-labs/skills) CLI. The design systems documented in

@@ -102,6 +102,16 @@ a rendered pose into a standalone SVG, and integrating it into the page. Hairlin
 Lucent still works without it. Availability and installation follow
 [reference/handoffs.md](reference/handoffs.md#hairline-illustrations-and-diagrams).
 
+### Product shots and faux UI
+
+When the page needs a picture of a product — a hero illustration of an app, a feature card, a
+bento tile, a docs figure, or a short demo with a cursor — read
+[reference/faux-ui.md](reference/faux-ui.md). It covers the framing that makes a mockup read as a
+product shot rather than a screenshot in a box, the word budget, the type and spacing numbers, the
+icon and logo rules, and the motion and poster rules. The same rules apply whether the mockup is
+authored by hand or with `stageshow`'s kit; installation follows
+[reference/handoffs.md](reference/handoffs.md#faux-product-ui-stageshow).
+
 ## Step 4 — The effect layer
 
 Read [reference/usage-map.md](reference/usage-map.md) first: it says which surfaces take an
@@ -181,6 +191,7 @@ it. Full protocol and command lines in [reference/handoffs.md](reference/handoff
 | The brief is | Ask about |
 |---|---|
 | An SVG illustration, isometric figure, or conceptual diagram | `hairline-create` — [reference/hairline.md](reference/hairline.md) |
+| A product mockup or app screenshot illustration, still or animated | [reference/faux-ui.md](reference/faux-ui.md) — build by hand, or `stageshow` for its kit |
 | A document, spreadsheet, presentation, PDF, photo edit, vector logo, or audio file | `office` — WordCraft, GridCraft, DeckCraft, PdfCraft, PhotoCraft, VectorCraft, SoundCraft |
 | A video you will edit, or a motion graphic with keyframes | `office` — FilmCraft, EffectCraft — **ask first: `hyperframes` or FilmCraft/EffectCraft?** |
 | A rendered video, HTML-built motion graphic, or live slideshow | `hyperframes` (decks: `slideshow`) |
