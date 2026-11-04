@@ -1,6 +1,6 @@
 ---
 name: lucent
-description: Use for any visual interface work - websites, landing pages, web apps, dashboards, component libraries, redesigns, or polish passes - to move from a vague brief to a finished, legible interface. Covers direction, design-system choice, layout, type, colour, states, motion, and the final audit, preferring what the project already ships over anything new.
+description: Use whenever you are making anything creative or designing any kind of interface, for any app, website, product, or anything else. Any design work at all - a landing page, web app, dashboard, mobile screen, component library, poster, deck, PDF, or visual - from a vague brief to a finished result. Covers direction, design-system choice, layout, type, colour, states, motion, and the final audit, preferring what the project already ships over anything new.
 ---
 
 # Lucent

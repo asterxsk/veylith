@@ -32,8 +32,8 @@ No installer, no bundle, no companion skill that arrives uninvited.
 | **[blueprint](skills/blueprint/SKILL.md)** | Intent and agreement | Uses native questions to establish the brief, asks how many prototypes to explore, refines the chosen design, and implements when the user says to proceed. |
 | **[decision-review](skills/decision-review/SKILL.md)** | Sign-off | Checks every decision and assumption in `decisions.md` against what was actually built, then asks the user one at a time to keep or change it, applies the answers, and updates the record. |
 | **[handoff](skills/handoff/SKILL.md)** | Continuity | Replaces `HANDOFF.md` in the current directory with concise user-message summaries, completed work, every changed file, verification, and next steps. |
-| **[lucent](skills/lucent/SKILL.md)** | Clarity and precision | Turns a vague requirement into a polished, legible interface — direction, design system, fundamentals, any effect that earns its place, and the audit. |
-| **[poise](skills/poise/SKILL.md)** | Composure and control | Makes output look confident without trying to look sophisticated — removes generic AI-looking habits and settles hierarchy, spacing, type, and motion across web, print, decks, and video. |
+| **[lucent](skills/lucent/SKILL.md)** | Clarity and precision | Any creative or interface work — any app, website, product, or anything else. Turns a vague brief into a finished design: direction, design system, fundamentals, any effect that earns its place, and the audit. |
+| **[poise](skills/poise/SKILL.md)** | Composure and control | Any review of design work, your own or existing. Makes output look confident without trying to look sophisticated — removes generic AI-looking habits and settles hierarchy, spacing, type, and motion across web, print, decks, and video. |
 | **[office](skills/office/SKILL.md)** | Production | Makes real documents, decks, sheets, PDFs, images, vectors, video, motion graphics and audio in the ArtCraft app suite, one code-mode call at a time, and asks before installing an app that is missing. |
 
 More skills are landing. Each is a folder with a `SKILL.md`, installable on its own.
@@ -267,10 +267,11 @@ Nothing in this repository installs anything else. That is the point.
 
 ## poise
 
-[poise](skills/poise/SKILL.md) improves hierarchy, spacing, typography, graphics, and motion
-across websites, interfaces, PDFs, posters, decks, and videos. Use it to prune repetitive
-dividers, decorative uppercase monospace, clutter, and effects that compete with the message,
-while preserving the brief, brand, and meaningful character.
+[poise](skills/poise/SKILL.md) is the review pass over design work, your own or already built.
+It improves hierarchy, spacing, typography, graphics, and motion across websites, interfaces,
+PDFs, posters, decks, and videos. Use it to prune repetitive dividers, decorative uppercase
+monospace, clutter, and effects that compete with the message, while preserving the brief,
+brand, and meaningful character.
 
 It works on its own, with no libraries and no dependencies. When paired with Lucent, Lucent
 settles the fundamentals and builds; once the design is done, Lucent runs poise as a subagent for

@@ -1,6 +1,6 @@
 ---
 name: poise
-description: "Composure and control. Make the output look confident without trying too hard to look sophisticated - remove generic AI-looking visual habits and polish how websites, interfaces, PDFs, posters, decks, and videos feel. Use for design cleanup, excessive dividers or uppercase monospace, uneven spacing, cluttered graphics, and overworked motion. Works alone or alongside Lucent. Not for filesystem cleanup or AI-authorship detection."
+description: "Use for any review work over a design - your own or an existing artifact - in any medium: websites, interfaces, PDFs, posters, decks, and videos. Composure and control: make the output look confident without trying too hard to look sophisticated - remove generic AI-looking visual habits and polish how it feels. Also use for design cleanup, excessive dividers or uppercase monospace, uneven spacing, cluttered graphics, and overworked motion. Works alone or alongside Lucent. Not for filesystem cleanup or AI-authorship detection."
 ---
 
 # Poise
