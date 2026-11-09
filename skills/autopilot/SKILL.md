@@ -1,19 +1,24 @@
 ---
 name: autopilot
-description: "Run an entire task to completion with no further user input. Collect every blocking question up front through the harness's native question tool, then work unattended: decide, implement, verify, and record every decision and assumption in decisions.md, and report it when the work is done. Use when the user says they are leaving, will not answer, or wants the agent to handle everything by itself."
+description: "Run an entire task to completion with no user input. Invoking this skill means the user is already gone — treat every moment after invocation as unattended: decide, implement, verify, and record every decision and assumption in decisions.md, then report when the work is done. Use when the user says they are leaving, will not answer, or wants the agent to handle everything by itself."
 ---
 
 # Autopilot
 
-Do the work alone. Ask everything that could block progress before the user leaves, then stop
-asking entirely and carry the task to a finished, verified state. Every choice made without the
-user is written down, and the record is what they read when they come back.
+Do the work alone. The moment this skill is invoked the user is gone — not about to leave, not
+reachable for one last question. Ask nothing, then carry the task to a finished, verified state.
+Every choice made in their absence is written down, and the record is what they read when they
+come back.
 
 ## The one rule
 
-From the moment autopilot starts until the work is complete, **the user is unavailable**. Do not
+From the instant autopilot starts until the work is complete, **the user is unavailable**. Do not
 ask a question, request an approval, offer a choice, wait for a reply, or end a turn in the hope
 of input. There is nobody there to answer, and a question asked now strands the work.
+
+Invocation is the signal. Do not open with a clarifying round, a check-in, or a "let me know if
+you want something different" — that would assume a user who is not there. If the request is
+ambiguous, resolve it from the evidence and record the resolution as a decision.
 
 The only exceptions are the actions below, which are never taken unattended. Record each as a
 blocker instead of doing it:
@@ -30,40 +35,28 @@ blocker instead of doing it:
 If one of those is genuinely required to finish, stop at the last safe point, record the exact
 command or action that would unblock it, and leave the work in a clean, running state.
 
-## 1. Preflight: ask everything now
+## 1. Read the ground first
 
-Before going quiet, read the request, the supplied references, the project instructions, and
-enough of the repository to answer your own questions. Research the environment instead of asking
-about it. Then build the complete list of decisions that would change the work, and settle the
-ones you have to ask in a single pass.
+Start by reading the request, the supplied references, the project instructions, and enough of the
+repository to answer your own questions. Research the environment instead of asking about it.
 
-Use the harness's native question tool when one is available and permitted — `AskUserQuestion`,
-`request_user_input`, or a namespaced equivalent. Batch independent questions into one call, up to
-the tool's limit; the user is about to leave, so a second round is expensive.
+Then ask yourself what a careful user would have settled before leaving: scope, boundaries,
+permissions, anything costly to reverse, anything genuinely ambiguous, any preference only they
+hold. Do not put those to them. Settle each one yourself using the rules in step 4, and write it
+into `decisions.md` as a decision — with the alternative you rejected and what would change your
+mind. Where you truly cannot decide from evidence, record it as an assumption with what would
+confirm it, and build the reversible version.
 
-Ask only for decisions that are:
-
-- **Unauthorised** — scope, boundaries, or permissions the request does not settle.
-- **Costly to reverse** — a schema, file layout, public API, or data shape that later work will
-  build on.
-- **Genuinely ambiguous** — two readings of the request that lead to different products.
-- **Consequential and unknowable** — a preference only the user holds.
-
-Everything else is yours to decide. Do not ask about anything you can determine from the code,
-the conventions, or a sensible default; do not ask a question you could answer by reading the
-project; do not conduct a general interview. Keep it short, and lead with a recommendation the
-user can accept in one tap.
-
-If nothing needs asking, skip this step, say so, and start.
+Nothing goes to the harness's question tool. Nothing goes into chat as a question. The interview
+that would have happened up front is replaced by the decisions file.
 
 ## 2. Take the helm
 
-Once the last question is answered — or immediately, if there were none — write the first
-`decisions.md` entry and tell the user, once, in a short message, that they can go: what you are
-about to build, roughly how you will work, and that every decision made in their absence will be
-in `decisions.md`. Then begin. Say it plainly; no ceremony, no repeating it later.
+Announce the work once, briefly — what you read the request as, what you are about to build,
+roughly how you will work, and that every decision made in their absence is in `decisions.md`.
+Then begin. No ceremony, no repeating it later, no invitation to redirect you.
 
-That message is the last thing the user reads before they are gone, so it must be accurate. Do not
+That message is the only thing the user reads before they return, so it must be accurate. Do not
 promise what you cannot verify, and do not call the work finished in it.
 
 ## 3. Keep the decisions file
@@ -96,8 +89,8 @@ section (step 6).
 
 When a choice appears and nobody is there to make it:
 
-1. **Follow the evidence already in front of you** — the brief, earlier answers, project
-   conventions, existing patterns, surrounding code.
+1. **Follow the evidence already in front of you** — the brief, project conventions, existing
+   patterns, surrounding code, the skill's own guidance.
 2. **Prefer the smaller scope.** Do the part that was asked, and leave the adjacent improvement
    written down rather than done.
 3. **Prefer the reversible move.** A choice that can be undone by editing one file beats one that
@@ -151,6 +144,7 @@ decision as settled that the user never made.
 
 ## If the work is later resumed
 
+The user is back or still away — either way their next message is the only question that matters.
 Read `decisions.md` and the working tree before doing anything. Treat recorded decisions as
-settled unless the user says otherwise; treat blockers as the resume list; and, if the user is
-still away, continue under the one rule without asking.
+settled unless they say otherwise; treat blockers as the resume list; and, if they have not
+returned, continue under the one rule without asking.

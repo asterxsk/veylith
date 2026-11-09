@@ -28,7 +28,7 @@ No installer, no bundle, no companion skill that arrives uninvited.
 
 | Skill | Discipline | What it does |
 |---|---|---|
-| **[autopilot](skills/autopilot/SKILL.md)** | Autonomy | Asks everything that could block the work in one pass, then finishes alone and logs every decision, assumption and blocker in `decisions.md` for the user to review on return. |
+| **[autopilot](skills/autopilot/SKILL.md)** | Autonomy | Invoking it means the user is already gone: asks nothing, finishes alone, and logs every decision, assumption and blocker in `decisions.md` for the user to review on return. |
 | **[blueprint](skills/blueprint/SKILL.md)** | Intent and agreement | Uses native questions to establish the brief, asks how many prototypes to explore, refines the chosen design, and implements when the user says to proceed. |
 | **[decision-review](skills/decision-review/SKILL.md)** | Sign-off | Checks every decision and assumption in `decisions.md` against what was actually built, then asks the user one at a time to keep or change it, applies the answers, and updates the record. |
 | **[handoff](skills/handoff/SKILL.md)** | Continuity | Replaces `HANDOFF.md` in the current directory with concise user-message summaries, completed work, every changed file, verification, and next steps. |
@@ -75,10 +75,10 @@ cp -r /tmp/veylith/skills/lucent ~/.claude/skills/lucent
 
 ## Autopilot
 
-[autopilot](skills/autopilot/SKILL.md) runs a task while the user is not there. It collects every
-question that could block the work in a single pass through the native question tool, tells the
-user once that they can go, and then works unattended: planning, implementing, reviewing and
-verifying without asking for anything else.
+[autopilot](skills/autopilot/SKILL.md) runs a task while the user is not there. Invoking it is the
+signal that they are already gone, so it asks nothing — no clarifying round, no check-in. It reads
+the request, the references and the repository to answer its own questions, then works unattended:
+planning, implementing, reviewing and verifying without asking for anything else.
 
 Every choice made in their absence is appended to `decisions.md` in the working directory as it
 happens — what was decided, why, which alternatives were rejected, how reversible it is, what
