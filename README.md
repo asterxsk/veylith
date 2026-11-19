@@ -29,7 +29,7 @@ No installer, no bundle, no companion skill that arrives uninvited.
 | Skill | Discipline | What it does |
 |---|---|---|
 | **[autopilot](skills/autopilot/SKILL.md)** | Autonomy | Invoking it means the user is already gone: asks nothing, finishes alone, and logs every decision, assumption and blocker in `decisions.md` for the user to review on return. |
-| **[blueprint](skills/blueprint/SKILL.md)** | Intent and agreement | Uses native questions to establish the brief, asks how many prototypes to explore, refines the chosen design, and implements when the user says to proceed. |
+| **[blueprint](skills/blueprint/SKILL.md)** | Discovery and implementation | Asks what to build, implements the agreed brief, and revises it with a fresh critic each round until it meets the user's target. |
 | **[decision-review](skills/decision-review/SKILL.md)** | Sign-off | Checks every decision and assumption in `decisions.md` against what was actually built, then asks the user one at a time to keep or change it, applies the answers, and updates the record. |
 | **[handoff](skills/handoff/SKILL.md)** | Continuity | Replaces `HANDOFF.md` in the current directory with concise user-message summaries, completed work, every changed file, verification, and next steps. |
 | **[lucent](skills/lucent/SKILL.md)** | Clarity and precision | Any creative or interface work — any app, website, product, or anything else. Turns a vague brief into a finished design: direction, design system, fundamentals, any effect that earns its place, and the audit. |
@@ -120,11 +120,11 @@ npx skills add asterxsk/veylith --skill decision-review -g
 
 ## Blueprint
 
-[blueprint](skills/blueprint/SKILL.md) combines brainstorming, probing questions, and runnable
-prototypes in one workflow. It uses the harness's native question tool to establish shared
-understanding, then asks the user how many distinct prototypes to compare. The user can select
-or combine directions and refine them for as many rounds as needed. Implementation begins when
-the user says to proceed, including an explicit request to skip prototypes.
+[blueprint](skills/blueprint/SKILL.md) asks what you want to build, how to recognize success,
+and what match percentage to aim for. Once the brief is settled, it builds the result.
+A fresh critic inspects each revision against your brief and references. The agent fixes
+the gaps and repeats until the score reaches your target and the required behavior is verified.
+You can also ask to compare prototypes first.
 
 Plans and long documents stay in markdown files. Blueprint works on its own; Lucent can guide
 the interface implementation and poise can make the finishing pass when available.
