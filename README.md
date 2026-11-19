@@ -28,9 +28,9 @@ No installer, no bundle, no companion skill that arrives uninvited.
 
 | Skill | Discipline | What it does |
 |---|---|---|
-| **[autopilot](skills/autopilot/SKILL.md)** | Autonomy | Invoking it means the user is already gone: asks nothing, finishes alone, and logs every decision, assumption and blocker in `decisions.md` for the user to review on return. |
+| **[autopilot](skills/autopilot/SKILL.md)** | Unattended work | Continues the current task while you are away, including any subagents already called for. |
 | **[blueprint](skills/blueprint/SKILL.md)** | Discovery and implementation | Asks what to build, implements the agreed brief, and revises it with a fresh critic each round until it meets the user's target. |
-| **[decision-review](skills/decision-review/SKILL.md)** | Sign-off | Checks every decision and assumption in `decisions.md` against what was actually built, then asks the user one at a time to keep or change it, applies the answers, and updates the record. |
+| **[decision-review](skills/decision-review/SKILL.md)** | Decision summary | Shows the choices the agent made in a short numbered list. |
 | **[handoff](skills/handoff/SKILL.md)** | Continuity | Replaces `HANDOFF.md` in the current directory with concise user-message summaries, completed work, every changed file, verification, and next steps. |
 | **[lucent](skills/lucent/SKILL.md)** | Clarity and precision | Any creative or interface work — any app, website, product, or anything else. Turns a vague brief into a finished design: direction, design system, fundamentals, any effect that earns its place, and the audit. |
 | **[poise](skills/poise/SKILL.md)** | Composure and control | Any review of design work, your own or existing. Makes output look confident without trying to look sophisticated — removes generic AI-looking habits and settles hierarchy, spacing, type, and motion across web, print, decks, and video. |
@@ -75,21 +75,7 @@ cp -r /tmp/veylith/skills/lucent ~/.claude/skills/lucent
 
 ## Autopilot
 
-[autopilot](skills/autopilot/SKILL.md) runs a task while the user is not there. Invoking it is the
-signal that they are already gone, so it asks nothing — no clarifying round, no check-in. It reads
-the request, the references and the repository to answer its own questions, then works unattended:
-planning, implementing, reviewing and verifying without asking for anything else.
-
-Every choice made in their absence is appended to `decisions.md` in the working directory as it
-happens — what was decided, why, which alternatives were rejected, how reversible it is, what
-happens if it is wrong. Assumptions and blockers are logged separately. When the work is finished
-the file is closed out and summarised in chat, so the record is the first thing the user reads
-back.
-
-The rule that keeps it safe unattended: nothing irreversible and nothing outward-facing is done
-alone. No force-pushes, no deletions it cannot undo, no pushes, publishes, deploys, installs, or
-spending. Those become blocker entries with the exact action that would resume them, and the work
-stops at the last clean, running state.
+Invoke Autopilot when you step away. The agent continues the agreed work, including reviews and subagents, and leaves one short bullet per choice you might want to revisit.
 
 ```bash
 npx skills add asterxsk/veylith --skill autopilot -g
@@ -99,18 +85,7 @@ npx skills add asterxsk/veylith --skill autopilot -g
 
 ## Decision Review
 
-[decision-review](skills/decision-review/SKILL.md) is the counterpart to Autopilot: the pass the
-user makes when they come back. It reads `decisions.md`, checks each entry against the actual
-work — applied, drifted, never implemented, or unverifiable — and adds anything the work changed
-that nobody recorded. Then it asks, one entry at a time through the native question tool: keep it,
-change it, or revert it where a clean undo exists.
-
-Entries are ordered by consequence, so the hard-to-reverse and unrecorded ones come first. The
-approved changes are implemented and verified, the review section is appended to `decisions.md`
-with the verdict on each entry, and the chat summary says what changed and what is still open.
-
-When the file holds no decisions and no assumptions, the skill says so in one line and stops.
-There is nothing to review, and no review is invented to fill the silence.
+When you return, Decision Review lists the choices the agent made in plain words. Ask about an item by number if you want the reasoning or a change.
 
 ```bash
 npx skills add asterxsk/veylith --skill decision-review -g
