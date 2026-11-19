@@ -8,7 +8,7 @@ stretch them over work they were never meant for.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-18181B)](LICENSE)
 [![Install: npx skills](https://img.shields.io/badge/install-npx%20skills-18181B)](https://skills.sh)
-[![Skills: 7](https://img.shields.io/badge/skills-7-18181B)](skills)
+[![Skills: 8](https://img.shields.io/badge/skills-8-18181B)](skills)
 
 The ideas that hold across the collection:
 
@@ -22,7 +22,7 @@ The ideas that hold across the collection:
   ask before installing it, and install exactly that one skill.
 - **Say the cost.** Bundle size, render time, or upkeep — in one line, in the report.
 
-No installer, no bundle, no companion skill that arrives uninvited.
+No setup script, no bundle, no companion skill that arrives uninvited.
 
 ## The collection
 
@@ -32,6 +32,7 @@ No installer, no bundle, no companion skill that arrives uninvited.
 | **[blueprint](skills/blueprint/SKILL.md)** | Discovery and implementation | Asks what to build, implements the agreed brief, and revises it with a fresh critic each round until it meets the user's target. |
 | **[decision-review](skills/decision-review/SKILL.md)** | Decision summary | Shows the choices the agent made in a short numbered list. |
 | **[handoff](skills/handoff/SKILL.md)** | Continuity | Replaces `HANDOFF.md` in the current directory with concise user-message summaries, completed work, every changed file, verification, and next steps. |
+| **[installer](skills/installer/SKILL.md)** | Shipping | Builds a custom one-click Windows installer with a generated, in-brand animated splash, a portable zip and delta updates, from one release script. |
 | **[lucent](skills/lucent/SKILL.md)** | Clarity and precision | Any creative or interface work — any app, website, product, or anything else. Turns a vague brief into a finished design: direction, design system, fundamentals, any effect that earns its place, and the audit. |
 | **[poise](skills/poise/SKILL.md)** | Composure and control | Any review of design work, your own or existing. Makes output look confident without trying to look sophisticated — removes generic AI-looking habits and settles hierarchy, spacing, type, and motion across web, print, decks, and video. |
 | **[office](skills/office/SKILL.md)** | Production | Makes real documents, decks, sheets, PDFs, images, vectors, video, motion graphics and audio in the ArtCraft app suite, one code-mode call at a time, and asks before installing an app that is missing. |
@@ -50,6 +51,7 @@ npx skills add asterxsk/veylith --skill autopilot -g
 npx skills add asterxsk/veylith --skill blueprint -g
 npx skills add asterxsk/veylith --skill decision-review -g
 npx skills add asterxsk/veylith --skill handoff -g
+npx skills add asterxsk/veylith --skill installer -g
 npx skills add asterxsk/veylith --skill lucent -g
 npx skills add asterxsk/veylith --skill office -g
 npx skills add asterxsk/veylith --skill poise -g
@@ -306,6 +308,9 @@ skills/decision-review/
 skills/handoff/
 ├── SKILL.md                    concise session handoff, replaced on each invocation
 └── agents/openai.yaml          display name, default prompt, and explicit invocation policy
+skills/installer/
+├── SKILL.md                    the shell, the one release script, the splash recipe, the rules
+└── agents/openai.yaml          display name and default prompt
 skills/lucent/
 ├── SKILL.md                    the loop, the contracts, the handoff protocol
 └── reference/

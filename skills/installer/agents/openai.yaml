@@ -1,0 +1,6 @@
+interface:
+  display_name: "Installer"
+  short_description: "Build a custom one-click Windows installer with an in-brand animated splash"
+  default_prompt: "Use $installer to build a one-click Windows installer for this app: one release script, Velopack shell, portable zip, delta updates, and a splash generated in code from the product's own type and palette."
+policy:
+  allow_implicit_invocation: true
