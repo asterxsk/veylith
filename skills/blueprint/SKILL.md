@@ -1,14 +1,16 @@
 ---
 name: blueprint
-description: "Turn an idea into an agreed brief, user-chosen prototypes, and an implementation. Use for collaborative discovery, brainstorming with probing questions, comparing design directions, and refining a chosen prototype before building. Ask through the harness's native question tool and begin implementation when the user says to proceed. Not needed for a direct fix or a polish pass with settled requirements."
+description: "Turn an idea into an agreed brief, user-chosen prototypes, and an implementation. Use for collaborative discovery, brainstorming with probing questions in one batched intake, comparing design directions, and refining a chosen prototype before building. Ask through the harness's native question tool, work independently once intent is confirmed, and use fresh zero-context critics to score the result against the original reference until it reaches the closeness target the user chose (50-90%). Not needed for a direct fix or a polish pass with settled requirements."
 ---
 
 # Blueprint
 
-Understand the intent, question the assumptions, make the alternatives tangible, and build the
-chosen result. Combine collaborative brainstorming, a dependency-aware interview, and runnable
-prototypes in one continuous workflow. The user controls how many directions to explore, how
-long to refine them, and when implementation begins.
+Understand the intent, question the assumptions in one batched intake, make the alternatives
+tangible, and build the chosen result. Combine collaborative brainstorming, a dependency-aware
+interview, and runnable prototypes in one continuous workflow. The user controls how many
+directions to explore, how close to their reference the result must become, how long to refine,
+and when implementation begins. Ask the whole question set up front, then work independently
+until the result clears the chosen closeness target.
 
 This skill is self-contained. It does not require the `brainstorming`, `grilling`, or `prototype`
 skills to be installed or invoked.
@@ -17,16 +19,19 @@ skills to be installed or invoked.
 
 Use the project's established markdown plan file. If there is none, create
 `docs/plans/<topic>-blueprint.md`. Keep the current brief, settled decisions, material open
-questions and their dependencies, prototype count and links, selected revision, and next step
-there. Separate user decisions, verified facts, proposals, and assumptions. Update the file as
-answers arrive; do not overwrite unrelated plans.
+questions and their dependencies, prototype count and links, selected revision, the closeness
+target with each critic pass's score and gaps, and next step there. Separate user decisions,
+verified facts, proposals, and assumptions. Update the file as answers arrive; do not overwrite
+unrelated plans.
 
 Plans, specifications, and other long documents belong in files. Deliver a document with just
 its path in chat; use the native question tool for the question about it. Do not paste the
-document or restate its contents in chat. Short progress updates and prototype links are fine.
+document or restate its contents in chat. Short progress updates, prototype links, and critic
+scores are fine.
 
 On resuming, read this record and the latest user messages. Continue from the earliest
-unresolved decision rather than restarting the interview or discarding an accepted design.
+unresolved decision, the current critic score against the target, or the last accepted design,
+rather than restarting the intake or discarding an accepted design.
 
 ## Ask through the harness
 
@@ -36,11 +41,22 @@ expose `AskUserQuestion`, `request_user_input`, or `request_user_input_async`, p
 namespace. Names and schemas vary: use the available tool's documented arguments and limits.
 Do not call a guessed tool name or change modes merely to enable a question tool.
 
-- Prefer one focused question when its answer determines what to ask next. Batch a small set
-  of independent questions when the tool supports it; never put a prerequisite and its dependent
-  decision in the same batch.
+- **Batch the whole intake, not one question at a time.** Once the environment is read, ask every
+  question the request needs in as few calls as the tool allows: fill its documented maximum per
+  call with independent questions and chain further calls in the same turn rather than waiting
+  for an answer between each one. Never drip a decision that could have been part of the first
+  pass.
+- A prerequisite and the decisions that depend on it may share a pass when the dependent question
+  is phrased so either answer is usable ("if X, then..."). When a dependency truly cannot be
+  expressed that way, take the recommended answer as a recorded assumption and continue, rather
+  than holding the rest of the pass.
+- After the intake, work independently. Re-enter the tool only at a decision that is genuinely
+  the user's: the brief's confirmation, prototype selection, the closeness target if still
+  unset, and permission to implement or push. Do not ask mid-build questions the brief already
+  answers, and do not re-ask a decision the user has made.
 - Offer concise, meaningful choices and a recommendation where useful. Preserve free-text
-  answers and custom counts; do not constrain the user to the suggested choices.
+  answers, custom counts, and any percentage the user types; do not constrain the user to the
+  suggested choices.
 - A tool returning is not necessarily an answer. For asynchronous tools, keep the question
   pending until an actual user reply arrives. Continue independent research or artifact work,
   then yield if the next step depends on the reply. Do not duplicate pending questions or treat
@@ -57,11 +73,17 @@ enough of the project to ground the discussion. Discover facts from the environm
 use bounded research or exploration agents when useful. Ask the user for their goals and
 decisions, not facts you can look up. Preserve explicit requirements and earlier answers.
 
-Build a working decision tree. Ask only the questions whose prerequisites are settled, then
-recompute that frontier after each answer. Prioritize decisions that would change the product,
-scope, prototype, or implementation. Probe contradictions and consequential assumptions with
-concrete examples and trade-offs; explain why the answer matters. Be candid without making the
-interview adversarial.
+Build the decision tree first, privately, then ask it all at once: enumerate every question the
+request raises, group the independent ones, and put them to the user in one batched intake using
+the tool's maximum per call. Prioritize decisions that would change the product, scope,
+prototype, or implementation. Probe contradictions and consequential assumptions with concrete
+examples and trade-offs; explain why the answer matters. Be candid without making the interview
+adversarial.
+
+Recurse only where it pays: after the batch, ask a follow-up solely when an unanswered point
+genuinely blocks the next step, or when a contradiction in the answers needs resolving. Take
+recommendations as recorded assumptions everywhere else, and prefer an assumption the user can
+correct over another round of questions.
 
 Establish, to the depth this project needs:
 
@@ -70,10 +92,14 @@ Establish, to the depth this project needs:
 - Platform, existing stack, constraints, available data, and real versus simulated behavior.
 - Visual references, desired feeling, and elements that must be preserved.
 - Important states, edge cases, and unresolved risks that could change the design.
+- How many prototypes to compare, when they want any.
+- How close to the reference the finished result must be (see stage 5), when a reference exists.
 
-Do not turn this into an exhaustive questionnaire. Reuse what is already settled, offer a
-reasoned recommendation when the user is unsure, and record delegated choices as such. For a
-large request, settle a useful first slice before refining distant subsystems.
+Ask these in the opening batch, not one per visit. Do not turn this into an exhaustive
+questionnaire either: a question the code, the references, or the environment can answer is not
+a question for the user. Reuse what is already settled, offer a reasoned recommendation when the
+user is unsure, and record delegated choices as such. For a large request, settle a useful first
+slice in the brief rather than interrogating every distant subsystem.
 
 Write the brief in the plan file and use the native tool to invite confirmation or correction.
 Incorporate corrections before treating it as shared understanding. Existing explicit agreement
@@ -84,9 +110,11 @@ make the first prototypes answer the wrong question.
 ## 2. Ask how many prototypes
 
 Once the brief is understood, ask through the native tool: **How many distinct prototypes would
-you like to compare?** Suggested choices such as 1, 2, or 3 may explain the exploration effort,
-but the user's count wins. Do not silently default to three or impose a fixed maximum. If a
-large count needs batching, discuss that delivery trade-off without changing the count.
+you like to compare?** It belongs in the opening intake when the brief already makes the question
+answerable; ask it here only when it was not. Suggested choices such as 1, 2, or 3 may explain the
+exploration effort, but the user's count wins. Do not silently default to three or impose a fixed
+maximum. If a large count needs batching, discuss that delivery trade-off without changing the
+count.
 
 Honor a count already supplied; do not ask it again. Accept later changes and update the plan.
 The count means initial alternative directions, not the number of screens or subsequent tweak
@@ -163,7 +191,62 @@ If the user selects a candidate but gives no next step, ask through the native t
 they want tweaks, more exploration, or implementation. Wait for the answer. Do not start after
 a timeout, and do not ask again once the user has already said to proceed.
 
-## 5. Continue into implementation
+## 5. Score against the reference until the target is met
+
+The user's target is how close the result must come to the reference they gave: their original
+prompt, images, URLs, videos, or an existing product — anywhere from **50% to 90%**. Ask for it in
+the opening intake; if it was not answerable then, ask it once the reference is settled. Offer
+presets such as 50 / 70 / 85 / 90 with a recommendation, and accept any number in range the user
+types; never push them above 90 or quietly raise it. Default to 80% only when they delegate the
+choice, and record that as delegated. When the work has no reference material, compare against the
+confirmed brief and acceptance criteria instead, and say so: the percentage then means fidelity to
+the brief, not resemblance to a reference.
+
+Run a pass whenever a coherent chunk of features works — after the first slice of prototypes or
+implementation, and again after each substantial chunk — not only at the very end.
+
+Each pass goes to a **fresh critic with zero context from the build**:
+
+- Give it only the reference material, the confirmed brief with acceptance criteria, and the
+  current artifact as a user would experience it: the running app, screenshots at the intended
+  size and the same viewport, an exported file, or a recording for motion.
+- Withhold the plan file's proposals, the builder's rationale, earlier critic reports, the
+  current score, and this conversation. The critic judges from the reference alone; anything
+  leaked from the build anchors it and inflates the number.
+- Require structure: per-dimension closeness (composition and layout, type, color and surface,
+  imagery, motion, interaction and states, content fidelity), one overall percentage, and gaps
+  ranked most-visible first, each with evidence naming a region, screen, element, or behavior.
+- Reject inflation. A dimension that is visibly different does not score high, and a gap without
+  a location is not evidence. If a report arrives with no evidence, re-run the pass with a new
+  critic rather than trusting the number.
+
+Then compare against the target:
+
+- **At or above target** — record the score and stop looping. Move on to selection or to reviews,
+  tests, and verification.
+- **Below target** — fix the highest-ranked gaps first, then start a **new** pass with a different
+  fresh critic. Never hand the next critic the previous report or tell it what was fixed.
+- **Plateau** — if two consecutive passes score within a few points of each other, stop and say
+  so. Report the score, the stubborn gaps, and what would be needed to close them, instead of
+  grinding through passes that no longer move the number.
+- **Ceiling** — stop also when the remaining gaps are deliberate (a target below 100% means some
+  things are intentionally not matched), out of scope, or blocked by the brief.
+
+Cap the loop at a handful of passes per chunk and state in the report how many ran. The user can
+lower the target, accept the current score, or stop the loop at any point; honoring that ends the
+loop even below target. Reference agreement is not a substitute for the user's own judgment — if
+they look at the result and disagree with the critic, they win.
+
+Record in the plan: the target, the score and top gaps from each pass, the fixes applied, and any
+accepted shortfall. Below 100%, say plainly which aspects were deliberately left different.
+
+Use the harness's supported subagent/delegation mechanism to create each fresh critic, and keep its
+prompt free of build context. If none is available or permitted, say so and run the pass yourself
+from a bare statement of the reference and acceptance criteria, judging the artifact as if you had
+not built it; disclose that limitation along with the score, since a self-review cannot be treated
+as independent evidence.
+
+## 6. Continue into implementation
 
 When the user says to proceed, honor it in the same workflow. Do not end with an offer to build,
 require a special phrase, wait for an arbitrary number of rounds, or add a separate approval
@@ -206,20 +289,24 @@ sequence is complete:
 2. Once the reviews return, delegate fixer subagents in the affected worktrees to address the
    surfaced issues within the authorized scope. Provide the review findings and implementation
    context. Inspect their changes and resolve any remaining issues or disagreements.
-3. Write the tests appropriate to the completed changes and run the required checks. Verify the
+3. Run one confirmation pass through stage 5 at the same target, since review fixes can change
+   what the build looks like. Keep looping there while the score is below target, as stage 5
+   describes, including its plateau and ceiling stops.
+4. Write the tests appropriate to the completed changes and run the required checks. Verify the
    implementation against the selected revision and acceptance criteria, including functional
    checks and visual inspection when applicable. Report any checks not performed.
-4. After reviews, fixes, tests, and verification pass, merge the finished local branches into
-   the main repository. Recheck the merged tree and do not ask about pushing until this local
-   merge is complete and the merged result is clean.
-5. Only then ask the user, through the native question tool, whether they want the full merged
+5. After reviews, fixes, critic passes, tests, and verification pass, merge the finished local
+   branches into the main repository. Recheck the merged tree and do not ask about pushing until
+   this local merge is complete and the merged result is clean.
+6. Only then ask the user, through the native question tool, whether they want the full merged
    tree pushed to GitHub. Never push, publish, or create a GitHub remote without that explicit
    approval. If the user declines, leave the verified merged tree local.
 
 Use the harness's supported delegation mechanism when available and permitted. If delegation is
 unavailable or prohibited, perform the review and fixes directly, disclose the limitation, and
-then proceed to tests. Do not skip required verification or claim that a review guarantees all
-issues were found. This sequence does not replace the prototype preview checks above.
+then proceed to the critic pass and tests. Do not skip required verification or claim that a
+review guarantees all issues were found. This sequence does not replace the prototype preview
+checks or the critic passes above.
 
 Retire prototype switches and unused exploratory code from the shipped path. Preserve useful
 design evidence in the plan or an existing archive convention. Do not create issues, deployments,

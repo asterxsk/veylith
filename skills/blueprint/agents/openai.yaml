@@ -1,4 +1,4 @@
 interface:
   display_name: "Blueprint"
   short_description: "Question, prototype, refine, then implement"
-  default_prompt: "Use $blueprint to clarify what I want through native questions, ask how many prototypes I want, refine my chosen design, and implement when I say to proceed."
+  default_prompt: "Use $blueprint to ask everything I need to answer in one batched pass, ask how many prototypes I want and how close (50-90%) the result must be to my reference, work independently once the intent is confirmed, refine my chosen design, and keep fixing until a fresh zero-context critic scores it at my target before implementing."
